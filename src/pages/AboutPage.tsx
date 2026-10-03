@@ -17,10 +17,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   );
 
   return (
-    <main className="bg-background font-sans selection:bg-brand selection:text-white">
+    <main className="bg-sky-100 font-sans selection:bg-brand selection:text-white">
       
       {/* 1. HERO - MATCHES HOME PAGE */}
-      <section className="relative min-h-[50vh] flex items-center pt-28 pb-12 overflow-hidden border-b border-border bg-background">
+      <section className="relative min-h-[50vh] flex items-center pt-28 pb-12 overflow-hidden border-b border-border bg-sky-100">
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] bg-[url('/images/grid.svg')] bg-center opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
         </div>
@@ -102,7 +102,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 3. FAST FACTS GRID */}
-      <section className="py-24 bg-paper-2 border-b border-border">
+      <section className="py-24 bg-sky-100 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             

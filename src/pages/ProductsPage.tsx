@@ -51,7 +51,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
   return (
     <main>
       {/* Product Hero */}
-      <section className="border-b border-border bg-hero-wash">
+      <section className="border-b border-border bg-sky-100">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
           <p className="font-mono text-[11px] uppercase text-brand">Product portfolio</p>
           <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
@@ -189,7 +189,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Custom RF Configuration Banner */}
-      <section className="border-t border-border bg-paper-2">
+      <section className="border-t border-border bg-sky-100">
         <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-6 px-5 py-14 sm:px-6 md:flex-row md:items-center lg:px-10">
           <div>
             <h2 className="text-2xl font-semibold text-brand-deep">Need a custom configuration?</h2>

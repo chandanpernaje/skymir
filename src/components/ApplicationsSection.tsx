@@ -30,7 +30,7 @@ export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {
   ];
 
   return (
-    <section id="applications" className="py-24 bg-background relative border-t border-border">
+    <section id="applications" className="py-24 bg-sky-100 relative border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         
         {/* Header Section (Left Aligned to match HomePage Hardware Portfolio) */}

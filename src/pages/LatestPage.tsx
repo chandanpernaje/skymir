@@ -178,9 +178,9 @@ export function LatestPage({ initialCategory = 'all', onOpenQuote, onNavigate }:
   const blogCount = LATEST_ITEMS.filter((i) => i.category === 'blog').length;
 
   return (
-    <div ref={containerRef} className="min-h-screen">
+    <div ref={containerRef} className="min-h-screen bg-sky-100">
       {/* Header Banner */}
-      <section className="border-b border-border bg-hero-wash">
+      <section className="border-b border-border bg-sky-100">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24 pt-24 sm:pt-28">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -204,7 +204,7 @@ export function LatestPage({ initialCategory = 'all', onOpenQuote, onNavigate }:
       </section>
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 bg-sky-100">
         
         {/* Section Header & Filter Tabs */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6">

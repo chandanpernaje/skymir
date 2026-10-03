@@ -12,7 +12,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
   return (
     <main>
       {/* Hero */}
-      <section className="border-b border-border bg-hero-wash">
+      <section className="border-b border-border bg-sky-100">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
           <span className="inline-flex items-center gap-2 rounded-sm bg-surface px-3 py-1.5 font-mono text-[10px] uppercase text-brand shadow-sm ring-1 ring-border">
             <span className="size-1.5 bg-signal" />
@@ -242,7 +242,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
       </section>
 
       {/* Customer Success Scenario from skymirr.com */}
-      <section className="border-t border-border bg-paper-2">
+      <section className="border-t border-border bg-sky-100">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 lg:px-10 lg:py-20">
           <div className="rounded-md bg-surface p-6 sm:p-10 ring-1 ring-border shadow-sm hover-gradient-border">
             <div className="flex items-center gap-2 mb-3">

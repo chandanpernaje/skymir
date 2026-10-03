@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   useEffect(() => { if (mobileSearchOpen) setTimeout(() => mobileSearchInputRef.current?.focus(), 50); }, [mobileSearchOpen]);
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-gray-100 border-b border-border shadow-sm`}>
+    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-sky-100 border-b border-border shadow-sm`}>
       {/* Colored top accent bar */}
       <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #1D4ED8 0%, #3B82F6 40%, #0D9488 70%, #7C3AED 100%)'}} />
 
@@ -247,7 +247,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
             {mobileMenuOpen && (
               <nav
-                className="absolute right-0 top-14 w-64 rounded-sm border border-border p-3 shadow-xl animate-in fade-in zoom-in-95 duration-200 z-50 bg-gray-100"
+                className="absolute right-0 top-14 w-64 rounded-sm border border-border p-3 shadow-xl animate-in fade-in zoom-in-95 duration-200 z-50 bg-sky-100"
                 aria-label="Mobile navigation"
               >
                 {navItems.map((item) => {
@@ -281,7 +281,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
       {/* ── Mobile Search Panel (slides in below header) ── */}
       {mobileSearchOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-gray-100 px-4 py-3 animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden border-t border-gray-200 bg-sky-100 px-4 py-3 animate-in slide-in-from-top-2 duration-200">
           <div className="flex items-center gap-2 bg-white border border-brand rounded-sm px-3 py-2.5 shadow-sm">
             <Search className="size-4 text-brand flex-shrink-0" />
             <input
