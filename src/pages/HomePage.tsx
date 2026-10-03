@@ -1,0 +1,387 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import {
+  ChevronRight,
+  ArrowRight,
+  Router as RouterIcon,
+  Sparkles,
+  Cpu,
+  Truck,
+  HeartPulse,
+  CheckCircle2,
+  Globe,
+  Radio,
+  Zap,
+  Activity,
+  ShieldCheck,
+  Wifi
+} from 'lucide-react';
+import { HeroCarousel } from '../components/HeroCarousel';
+import { ApplicationsSection } from '../components/ApplicationsSection';
+import { MulcatDeepDive } from '../components/MulcatDeepDive';
+import type { RoutePath } from '../types';
+
+interface HomePageProps {
+  onNavigate: (path: RoutePath) => void;
+}
+
+const partners = [
+  { name: 'Digi-Key', logo: '/images/partners/digikey.jpg' },
+  { name: 'Amazon', logo: '/images/partners/amazon.jpg' },
+  { name: 'Walmart', logo: '/images/partners/walmart.jpg' },
+  { name: 'B&H Photo Video', logo: '/images/partners/bhphoto.jpg' },
+  { name: 'Verizon', logo: '/images/partners/verizon.jpg' },
+  { name: 'T-Mobile', logo: '/images/partners/tmobile.jpg' },
+];
+
+const solutions = [
+  {
+    id: 'retail',
+    icon: Globe,
+    title: 'Smart Retail & POS',
+    subtitle: 'Zero-Downtime Storefront',
+    description: 'Avoid fiber construction delays with instant-on 5G primary connectivity. Maintain continuous checkout processing.',
+    impact: '100% Checkout Uptime',
+  },
+  {
+    id: 'industrial',
+    icon: Cpu,
+    title: 'Industrial IoT',
+    subtitle: 'Ruggedized Remote Telemetry',
+    description: 'IP67 weatherproof antennas designed for substations, oil rigs, solar farms, and noisy metallic environments.',
+    impact: '-40°C to +85°C Operating',
+  },
+  {
+    id: 'transit',
+    icon: Truck,
+    title: 'Fleet & Transit',
+    subtitle: 'Vehicular Broadband',
+    description: 'Low-profile, vandal-resistant puck and MIMO modules providing continuous real-time video streaming.',
+    impact: 'SAE J1455 Certified',
+  },
+  {
+    id: 'medical',
+    icon: HeartPulse,
+    title: 'Medical Devices',
+    subtitle: 'Precision Medical NFC',
+    description: 'Biocompatible flexible substrate antennas for continuous glucose monitoring and secure hospital asset tracking.',
+    impact: 'ISO 10993 Compliant',
+  },
+];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 }
+  }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 90, damping: 20 } }
+};
+
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+  const [activeSolution, setActiveSolution] = useState(0);
+
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, path: RoutePath) => {
+    e.preventDefault();
+    onNavigate(path);
+  };
+
+  return (
+    <main className="bg-background text-foreground selection:bg-brand selection:text-brand-foreground overflow-hidden">
+      {/* 
+        ========================================
+        HERO SECTION 
+        ========================================
+      */}
+      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden">
+        {/* Dynamic Abstract Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-brand/10 rounded-full blur-[100px] mix-blend-multiply animate-float" />
+           <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-brand-bright/15 rounded-full blur-[120px] mix-blend-multiply animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] bg-[url('/images/grid.svg')] bg-center opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+        </div>
+
+        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-12">
+          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="relative">
+            <motion.h1 variants={fadeUp} className="max-w-[12ch] text-balance text-5xl font-bold leading-[1.05] tracking-tight text-brand-deep sm:text-7xl lg:text-[5.5rem]">
+              Signal <br/>
+              <span className="text-brand font-bold">without limits.</span>
+            </motion.h1>
+
+            <motion.p variants={fadeUp} className="mt-6 md:mt-8 max-w-[46ch] text-pretty text-base md:text-lg leading-relaxed text-muted-foreground lg:text-xl">
+              SkyMirr engineers premium enterprise wireless solutions. Experience unparalleled reliability with our proprietary <strong className="font-semibold text-brand-deep">MuLCAT®</strong> technology, designed for the world's most challenging environments.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
+              <a
+                className="group relative inline-flex items-center justify-center gap-3 bg-accent px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-white transition-all hover:bg-brand"
+                href="/products"
+                onClick={(e) => handleNav(e, '/products')}
+              >
+                <span className="relative z-10">Explore Hardware</span>
+                <ChevronRight className="size-5 relative z-10 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                className="group inline-flex items-center justify-center gap-2 bg-white px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-brand-deep ring-1 ring-border transition-all hover:bg-paper hover:text-brand"
+                href="/technology"
+                onClick={(e) => handleNav(e, '/technology')}
+              >
+                <Sparkles className="size-4 text-brand" />
+                Discover MuLCAT®
+              </a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} 
+            className="relative z-10 w-full mt-10 lg:mt-0"
+          >
+            <div className="relative rounded-[32px] p-2 bg-white/40 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] ring-1 ring-border backdrop-blur-xl">
+               <HeroCarousel />
+            </div>
+            
+            {/* Decorative orbit line behind carousel */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full border border-brand/10 -z-10 hidden lg:block animate-[spin_60s_linear_infinite]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full border border-brand-bright/10 -z-10 hidden lg:block animate-[spin_90s_linear_infinite_reverse]" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        PARTNERS STRIP
+        ========================================
+      */}
+      <section className="py-16 md:py-24 bg-background overflow-hidden">
+        <div className="mx-auto max-w-[1400px]">
+          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-12">
+            Deploying with global industry leaders
+          </p>
+          
+          <div className="relative flex w-max animate-marquee items-center group/marquee hover:[animation-play-state:paused]">
+            {[...partners, ...partners, ...partners].map((partner, idx) => (
+              <div key={`${partner.name}-${idx}`} className="flex justify-center px-4 sm:px-6">
+                <div className="flex items-center justify-center p-6 bg-white shadow-sm ring-1 ring-border transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-brand rounded-sm w-[160px] h-[100px] sm:w-[200px] sm:h-[120px]">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-12 w-auto object-contain transition-all duration-300"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        HARDWARE SHOWCASE 
+        ========================================
+      */}
+      <section className="relative py-24 lg:py-32 bg-paper-2 rounded-t-[40px] md:rounded-t-[80px]">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          <motion.div 
+            initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20"
+          >
+            <div className="max-w-2xl">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand/10 mb-6">
+                <Radio className="size-4 text-brand" />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">Hardware Portfolio</span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-deep tracking-tight leading-[1.1]">
+                Purpose-built <br className="hidden md:block"/>
+                <span className="text-muted-foreground/60">wireless platforms.</span>
+              </motion.h2>
+            </div>
+            <motion.a
+              variants={fadeUp}
+              href="/products"
+              onClick={(e) => handleNav(e, '/products')}
+              className="group inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-bold text-brand-deep shadow-sm ring-1 ring-border transition-all hover:bg-brand hover:text-white"
+            >
+              View Full Lineup
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </motion.a>
+          </motion.div>
+
+          <div className="grid gap-4 sm:gap-8 lg:grid-cols-3">
+            {[
+              {
+                title: 'TAMP Series',
+                cat: 'Broadband & Wi-Fi',
+                desc: '4G LTE, 5G Sub-6 MIMO, Wi-Fi 6E and Wi-Fi 7 external antenna solutions.',
+                img: '/images/products/tamp161.png'
+              },
+              {
+                title: 'Sky5G Router',
+                cat: 'MuLCAT® Connectivity',
+                desc: 'Industrial 5G connectivity with AT&T Network Certification.',
+                img: '/images/skymirr-router.jpg',
+                featured: true
+              },
+              {
+                title: 'TAEP & MAEP',
+                cat: 'Medical & Embedded',
+                desc: 'Specialized internal antenna platforms for compact medical devices.',
+                img: '/images/products/taep162.png'
+              }
+            ].map((product, idx) => (
+              <motion.article
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15, type: 'spring' as const, bounce: 0.2 }}
+                onClick={() => onNavigate('/products')}
+                className={`group cursor-pointer p-1.5 sm:p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                  product.featured 
+                  ? 'bg-brand/5 ring-1 ring-brand/30 rounded-md' 
+                  : 'bg-white shadow-sm ring-1 ring-border hover:border-brand rounded-md'
+                }`}
+              >
+                <div className={`h-full flex flex-row sm:flex-col p-3 sm:p-8 transition-colors ${product.featured ? 'bg-transparent' : 'bg-transparent'}`}>
+                  {/* Image Left on Mobile, Top on Desktop */}
+                  <div className="w-[100px] shrink-0 sm:w-full">
+                    <div className="relative h-full w-full aspect-square sm:aspect-[4/3] overflow-hidden bg-paper">
+                      <img src={product.img} alt={product.title} className="absolute inset-0 w-full h-full object-contain p-2 sm:p-8" />
+                    </div>
+                  </div>
+                  
+                  {/* Content Right on Mobile, Bottom on Desktop */}
+                  <div className="flex flex-col flex-1 justify-center pl-4 sm:pl-0 sm:pt-8">
+                    <p className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+                      {product.cat}
+                    </p>
+                    <h3 className="mt-1 sm:mt-2 text-lg sm:text-2xl font-extrabold text-brand-deep">{product.title}</h3>
+                    <p className="hidden sm:block mt-2.5 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground font-medium">
+                      {product.desc}
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        4. APPLICATIONS SECTION
+        ========================================
+      */}
+      <ApplicationsSection onNavigate={onNavigate} />
+
+      {/* 
+        ========================================
+        5. DISCOVER SKYMIRR / VIDEO SECTION
+        ========================================
+      */}
+      <MulcatDeepDive onNavigate={onNavigate} />
+
+      {/* 
+        ========================================
+        INTERACTIVE SOLUTIONS 
+        ========================================
+      */}
+      <section className="relative bg-white py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-deep tracking-tight">
+              Engineered for <span className="text-brand">Demanding Deployments</span>
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+              Whether connecting a smart retail storefront or a remote industrial site, SkyMirr hardware provides zero-compromise connectivity.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-4">
+            {solutions.map((item, idx) => {
+              const Icon = item.icon;
+              const isActive = activeSolution === idx;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.4 }}
+                  onClick={() => setActiveSolution(idx)}
+                  className={`group relative cursor-pointer overflow-hidden p-8 rounded-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                    isActive 
+                    ? 'bg-brand shadow-sm ring-1 ring-brand' 
+                    : 'bg-paper shadow-sm ring-1 ring-border hover:bg-paper-2 hover:border-brand/30'
+                  }`}
+                >
+                  <div className={`mb-8 inline-flex p-4 transition-all duration-300 ${isActive ? 'bg-white/20 text-white shadow-inner' : 'bg-white text-brand shadow-sm ring-1 ring-border'}`}>
+                    <Icon className="size-7" />
+                  </div>
+                  <h3 className={`text-xl font-extrabold mb-3 transition-colors ${isActive ? 'text-white' : 'text-brand-deep'}`}>
+                    {item.title}
+                  </h3>
+                  <p className={`text-sm font-bold uppercase tracking-wider mb-4 transition-colors ${isActive ? 'text-white/80' : 'text-brand'}`}>
+                    {item.subtitle}
+                  </p>
+                  <p className={`text-sm leading-relaxed transition-colors ${isActive ? 'text-white/90' : 'text-muted-foreground'}`}>
+                    {item.description}
+                  </p>
+                  <div className={`mt-8 pt-6 border-t flex items-center gap-2 transition-colors ${isActive ? 'border-white/20' : 'border-border'}`}>
+                    <CheckCircle2 className={`size-5 ${isActive ? 'text-white' : 'text-brand'}`} />
+                    <span className={`font-mono text-[11px] font-bold uppercase tracking-wider ${isActive ? 'text-white' : 'text-brand-deep'}`}>
+                      {item.impact}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        PREMIUM CTA SECTION 
+        ========================================
+      */}
+      <section className="relative py-24 overflow-hidden bg-brand-deep">
+        <div className="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-10" />
+        
+        <div className="relative mx-auto max-w-4xl px-6 text-center z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+            <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
+              Elevate your <br className="hidden sm:block"/>
+              <span className="text-accent">connectivity.</span>
+            </h2>
+            <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto font-medium">
+              Partner with SkyMirr for custom RF design, system-level consulting, and enterprise-grade wireless hardware deployment.
+            </p>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                className="w-full sm:w-auto bg-accent px-10 py-5 text-base font-bold text-white transition-all hover:bg-brand"
+                href="/contact"
+                onClick={(e) => handleNav(e, '/contact')}
+              >
+                Start a Project
+              </a>
+              <a
+                className="w-full sm:w-auto bg-white/10 px-10 py-5 text-base font-bold text-white ring-1 ring-white/20 transition-all hover:bg-white/20"
+                href="/design-services"
+                onClick={(e) => handleNav(e, '/design-services')}
+              >
+                View Design Services
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </main>
+  );
+};

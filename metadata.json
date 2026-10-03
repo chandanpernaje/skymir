@@ -1,0 +1,6 @@
+{
+  "name": "SkyMirr — Signal Without Limits",
+  "description": "Advanced antennas, 5G routers, and custom RF engineering for reliable wireless connectivity.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
