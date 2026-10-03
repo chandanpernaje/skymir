@@ -102,7 +102,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-brand/10 rounded-full blur-[100px] mix-blend-multiply animate-float" />
            <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-brand-bright/15 rounded-full blur-[120px] mix-blend-multiply animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] bg-[url('/images/grid.svg')] bg-center opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] grid-bg opacity-30" />
+           {/* Tech scan line */}
+           <div className="scan-line" />
         </div>
 
         <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-12">
@@ -118,7 +120,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             <motion.div variants={fadeUp} className="mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
               <a
-                className="group relative inline-flex items-center justify-center gap-3 bg-accent px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-white transition-all hover:bg-brand"
+                className="btn-shimmer group relative inline-flex items-center justify-center gap-3 bg-accent px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-white transition-all hover:bg-brand hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-0.5"
                 href="/products"
                 onClick={(e) => handleNav(e, '/products')}
               >
@@ -126,11 +128,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <ChevronRight className="size-5 relative z-10 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                className="group inline-flex items-center justify-center gap-2 bg-white px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-brand-deep ring-1 ring-border transition-all hover:bg-paper hover:text-brand"
+                className="group inline-flex items-center justify-center gap-2 bg-white px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-brand-deep ring-1 ring-border transition-all hover:bg-paper hover:text-brand hover:ring-brand hover:-translate-y-0.5 hover:shadow-md"
                 href="/technology"
                 onClick={(e) => handleNav(e, '/technology')}
               >
-                <Sparkles className="size-4 text-brand" />
+                <Sparkles className="size-4 text-brand group-hover:rotate-12 transition-transform" />
                 Discover MuLCAT®
               </a>
             </motion.div>
@@ -193,10 +195,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20"
           >
             <div className="max-w-2xl">
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand/10 mb-6">
+              <motion.div variants={fadeUp} className="badge-glow inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 border border-brand/20 mb-6">
+                <span className="ping-dot"><span className="w-2 h-2 rounded-full bg-brand block" /></span>
                 <Radio className="size-4 text-brand" />
                 <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">Hardware Portfolio</span>
               </motion.div>
+              <motion.div variants={fadeUp} className="accent-line mb-6" />
               <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-deep tracking-tight leading-[1.1]">
                 Purpose-built <br className="hidden md:block"/>
                 <span className="text-muted-foreground/60">wireless platforms.</span>
@@ -242,10 +246,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15, type: 'spring' as const, bounce: 0.2 }}
                 onClick={() => onNavigate('/products')}
-                className={`group cursor-pointer p-1.5 sm:p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                className={`card-glow group cursor-pointer p-1.5 sm:p-2 ${
                   product.featured 
-                  ? 'bg-brand/5 ring-1 ring-brand/30 rounded-md' 
-                  : 'bg-white shadow-sm ring-1 ring-border hover:border-brand rounded-md'
+                  ? 'bg-brand/5 ring-1 ring-brand/30 rounded-sm' 
+                  : 'bg-white shadow-sm ring-1 ring-border rounded-sm'
                 }`}
               >
                 <div className={`h-full flex flex-row sm:flex-col p-3 sm:p-8 transition-colors ${product.featured ? 'bg-transparent' : 'bg-transparent'}`}>
@@ -295,6 +299,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <section className="relative bg-white py-24 lg:py-32">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 border border-brand/20 mb-6">
+              <span className="ping-dot"><span className="w-2 h-2 rounded-full bg-brand block" /></span>
+              <Zap className="size-3.5 text-brand" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">Industry Solutions</span>
+            </div>
+            <div className="flex justify-center mb-6"><div className="accent-line" /></div>
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep tracking-tight">
               Engineered for <span className="text-brand">Demanding Deployments</span>
             </h2>
