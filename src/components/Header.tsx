@@ -50,8 +50,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   }, [mobileMenuOpen]);
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-white border-b border-border shadow-sm py-4`}>
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-12">
+    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-white border-b border-border shadow-sm`}>
+      {/* Colored top accent bar */}
+      <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #1D4ED8 0%, #3B82F6 40%, #0D9488 70%, #7C3AED 100%)'}} />
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-12 py-3">
         {/* Brand Logo */}
         <a
           className="group flex items-center gap-3"
@@ -95,7 +97,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <a
-              className="group inline-flex items-center gap-2 bg-brand px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-deep rounded-sm uppercase tracking-wide"
+              className="btn-shimmer group inline-flex items-center gap-2 bg-brand px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-deep hover:-translate-y-0.5 hover:shadow-md rounded-sm uppercase tracking-wide"
               href="/contact"
               onClick={(e) => handleLinkClick(e, '/contact')}
             >

@@ -158,23 +158,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-        PARTNERS STRIP
+        PARTNERS STRIP — Navy background like Radisys
         ========================================
       */}
-      <section className="py-16 md:py-24 bg-background overflow-hidden">
+      <section className="py-14 overflow-hidden" style={{background: 'linear-gradient(90deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'}}>
         <div className="mx-auto max-w-[1400px]">
-          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-12">
+          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-10">
             Deploying with global industry leaders
           </p>
           
           <div className="relative flex w-max animate-marquee items-center group/marquee hover:[animation-play-state:paused]">
             {[...partners, ...partners, ...partners].map((partner, idx) => (
               <div key={`${partner.name}-${idx}`} className="flex justify-center px-4 sm:px-6">
-                <div className="flex items-center justify-center p-6 bg-white shadow-sm ring-1 ring-border transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-brand rounded-sm w-[160px] h-[100px] sm:w-[200px] sm:h-[120px]">
+                <div className="flex items-center justify-center p-6 bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white hover:shadow-lg hover:-translate-y-1 rounded-sm w-[160px] h-[100px] sm:w-[200px] sm:h-[120px] group">
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-12 w-auto object-contain transition-all duration-300"
+                    className="max-h-12 w-auto object-contain brightness-0 invert opacity-60 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-300"
                   />
                 </div>
               </div>
@@ -294,10 +294,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-        INTERACTIVE SOLUTIONS 
+        INTERACTIVE SOLUTIONS - Per-card accent colors
         ========================================
       */}
-      <section className="relative bg-white py-24 lg:py-32">
+      <section className="relative py-24 lg:py-32" style={{background: 'linear-gradient(180deg, #ffffff 0%, #F0F4FF 100%)'}}>
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 border border-brand/20 mb-6">
@@ -318,35 +318,59 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {solutions.map((item, idx) => {
               const Icon = item.icon;
               const isActive = activeSolution === idx;
+              // Per-card accent colors: Blue, Orange, Teal, Violet
+              const accents = [
+                { bg: '#1D4ED8', light: '#EFF6FF', text: '#1D4ED8', border: '#BFDBFE' },
+                { bg: '#EA580C', light: '#FFF7ED', text: '#EA580C', border: '#FED7AA' },
+                { bg: '#0D9488', light: '#F0FDFA', text: '#0D9488', border: '#99F6E4' },
+                { bg: '#7C3AED', light: '#F5F3FF', text: '#7C3AED', border: '#DDD6FE' },
+              ];
+              const accent = accents[idx % accents.length];
               return (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.4 }}
+                  transition={{ delay: idx * 0.12, duration: 0.5 }}
                   onClick={() => setActiveSolution(idx)}
-                  className={`group relative cursor-pointer overflow-hidden p-8 rounded-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                    isActive 
-                    ? 'bg-brand shadow-sm ring-1 ring-brand' 
-                    : 'bg-paper shadow-sm ring-1 ring-border hover:bg-paper-2 hover:border-brand/30'
+                  style={isActive ? {background: accent.bg, borderColor: accent.bg} : {}}
+                  className={`group relative cursor-pointer overflow-hidden p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border ${
+                    isActive
+                    ? 'shadow-lg text-white'
+                    : 'bg-white border-border hover:border-opacity-50 shadow-sm'
                   }`}
                 >
-                  <div className={`mb-8 inline-flex p-4 transition-all duration-300 ${isActive ? 'bg-white/20 text-white shadow-inner' : 'bg-white text-brand shadow-sm ring-1 ring-border'}`}>
+                  {/* Top accent bar */}
+                  {!isActive && <div className="absolute top-0 left-0 right-0 h-1" style={{background: accent.bg}} />}
+                  
+                  <div
+                    className={`mb-8 inline-flex p-4 transition-all duration-300`}
+                    style={isActive ? {background: 'rgba(255,255,255,0.2)', color: 'white'} : {background: accent.light, color: accent.text}}
+                  >
                     <Icon className="size-7" />
                   </div>
                   <h3 className={`text-xl font-extrabold mb-3 transition-colors ${isActive ? 'text-white' : 'text-brand-deep'}`}>
                     {item.title}
                   </h3>
-                  <p className={`text-sm font-bold uppercase tracking-wider mb-4 transition-colors ${isActive ? 'text-white/80' : 'text-brand'}`}>
+                  <p
+                    className={`text-sm font-bold uppercase tracking-wider mb-4 transition-colors`}
+                    style={isActive ? {color: 'rgba(255,255,255,0.8)'} : {color: accent.text}}
+                  >
                     {item.subtitle}
                   </p>
                   <p className={`text-sm leading-relaxed transition-colors ${isActive ? 'text-white/90' : 'text-muted-foreground'}`}>
                     {item.description}
                   </p>
                   <div className={`mt-8 pt-6 border-t flex items-center gap-2 transition-colors ${isActive ? 'border-white/20' : 'border-border'}`}>
-                    <CheckCircle2 className={`size-5 ${isActive ? 'text-white' : 'text-brand'}`} />
-                    <span className={`font-mono text-[11px] font-bold uppercase tracking-wider ${isActive ? 'text-white' : 'text-brand-deep'}`}>
+                    <CheckCircle2
+                      className="size-5"
+                      style={isActive ? {color: 'white'} : {color: accent.text}}
+                    />
+                    <span
+                      className={`font-mono text-[11px] font-bold uppercase tracking-wider`}
+                      style={isActive ? {color: 'white'} : {color: accent.bg}}
+                    >
                       {item.impact}
                     </span>
                   </div>
