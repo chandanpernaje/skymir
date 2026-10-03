@@ -65,7 +65,7 @@ export const HeroCarousel: React.FC = () => {
         >
           <div className="overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-out"
+              className="flex ml-0 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {slides.map((slide, idx) => (
@@ -73,18 +73,17 @@ export const HeroCarousel: React.FC = () => {
                   key={slide.src}
                   role="group"
                   aria-roledescription="slide"
-                  className="min-w-0 shrink-0 grow-0 basis-full relative"
+                  className="min-w-0 shrink-0 grow-0 basis-full relative pl-0"
                 >
-                  {/* Fixed aspect ratio so the image always fills — no gaps */}
-                  <div className="relative w-full aspect-[16/9] overflow-hidden">
-                    <img
-                      src={slide.src}
-                      alt={slide.alt}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <span className="absolute bottom-5 right-5 font-mono text-[10px] text-white/80 sm:bottom-7 sm:right-7 drop-shadow">
+                  <img
+                    src={slide.src}
+                    alt={slide.alt}
+                    width={1920}
+                    height={688}
+                    className="w-full h-auto object-contain bg-surface rounded-xl"
+                    referrerPolicy="no-referrer"
+                  />
+                  <span className="absolute bottom-5 right-5 font-mono text-[10px] text-brand-foreground/80 sm:bottom-7 sm:right-7">
                     0{idx + 1} / 0{slides.length}
                   </span>
                 </div>
