@@ -97,12 +97,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         HERO SECTION 
         ========================================
       */}
-      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden" style={{background: 'linear-gradient(135deg, #F8FAFC 0%, #F0F4FF 50%, #EEF2FF 100%)'}}>
         {/* Dynamic Abstract Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-brand/10 rounded-full blur-[100px] mix-blend-multiply animate-float" />
-           <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-brand-bright/15 rounded-full blur-[120px] mix-blend-multiply animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] grid-bg opacity-30" />
+           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full blur-[120px] mix-blend-multiply animate-float" style={{background: 'rgba(29,78,216,0.12)'}} />
+           <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[130px] mix-blend-multiply animate-float" style={{background: 'rgba(59,130,246,0.10)', animationDelay: '3s', animationDuration: '10s'}} />
+           <div className="absolute top-[30%] right-[20%] w-[30vw] h-[30vw] rounded-full blur-[100px] mix-blend-multiply animate-float" style={{background: 'rgba(234,88,12,0.06)', animationDelay: '1.5s'}} />
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] grid-bg opacity-40" />
            {/* Tech scan line */}
            <div className="scan-line" />
         </div>
@@ -358,31 +359,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-        PREMIUM CTA SECTION 
+        PREMIUM CTA SECTION - Radisys/Peplink inspired
         ========================================
       */}
-      <section className="relative py-24 overflow-hidden bg-brand-deep">
-        <div className="absolute inset-0 bg-[url('/images/grid.svg')] bg-center opacity-10" />
+      <section className="relative py-32 overflow-hidden" style={{background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 45%, #1D4ED8 100%)'}}>
+        {/* Diagonal stripe overlay */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px'}} />
+        {/* Glowing orbs */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{background: '#3B82F6'}} />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-15" style={{background: '#EA580C'}} />
         
-        <div className="relative mx-auto max-w-4xl px-6 text-center z-10">
+        <div className="relative mx-auto max-w-5xl px-6 text-center z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/20 bg-white/5">
+              <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white/70">Ready to Connect</span>
+            </div>
+            <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl leading-[1.05]">
               Elevate your <br className="hidden sm:block"/>
-              <span className="text-accent">connectivity.</span>
+              <span className="text-[#FB923C]">connectivity.</span>
             </h2>
             <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto font-medium">
               Partner with SkyMirr for custom RF design, system-level consulting, and enterprise-grade wireless hardware deployment.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                className="w-full sm:w-auto bg-accent px-10 py-5 text-base font-bold text-white transition-all hover:bg-brand"
+                className="btn-shimmer w-full sm:w-auto bg-accent px-10 py-5 text-base font-bold text-white transition-all hover:bg-orange-500 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5"
                 href="/contact"
                 onClick={(e) => handleNav(e, '/contact')}
               >
                 Start a Project
               </a>
               <a
-                className="w-full sm:w-auto bg-white/10 px-10 py-5 text-base font-bold text-white ring-1 ring-white/20 transition-all hover:bg-white/20"
+                className="w-full sm:w-auto bg-white/10 px-10 py-5 text-base font-bold text-white ring-1 ring-white/20 transition-all hover:bg-white hover:text-brand-deep hover:-translate-y-0.5"
                 href="/design-services"
                 onClick={(e) => handleNav(e, '/design-services')}
               >

@@ -31,37 +31,50 @@
 :root {
   --radius: 0px; /* STRICT B2B: Completely square corners */
   
-  /* Strict B2B Telecom Theme (Quectel/Taoglas style) */
-  --background: oklch(98% 0 0); /* Very light gray/white */
-  --foreground: oklch(30% 0 0); /* Dark gray text */
-  
-  --card: oklch(100% 0 0); /* Solid white */
-  --card-foreground: oklch(25% 0 0);
-  
-  --primary: oklch(40% 0.12 255); /* Deep Corporate Blue */
-  --primary-foreground: oklch(100% 0 0);
-  
-  --muted: oklch(95% 0 0); 
-  --muted-foreground: oklch(45% 0 0);
-  
-  --accent: oklch(65% 0.20 40); /* Stark Quectel Orange */
-  --accent-foreground: oklch(100% 0 0);
-  
-  --border: oklch(90% 0 0); /* Flat gray borders */
+  /* =============================================
+     PREMIUM B2B TELECOM PALETTE
+     Inspired by: Radisys (navy+electric blue)
+                  Peplink  (navy+vibrant orange)
+                  Quectel  (royal blue+cobalt)
+                  Taoglas  (slate navy+signal green)
+     ============================================= */
 
-  --brand: oklch(45% 0.16 260); /* Vibrant Corporate Royal Blue (Quectel style) */
-  --brand-deep: oklch(25% 0.08 260); /* Navy Blue (Taoglas style) */
-  --brand-bright: oklch(55% 0.18 260);
-  --brand-foreground: oklch(100% 0 0);
-  
-  --signal: oklch(65% 0.18 140); /* Industrial Green */
-  
-  --paper: oklch(98% 0 0); /* Slightly lighter gray */
-  --paper-2: oklch(96% 0 0);
-  --surface: oklch(100% 0 0);
-  --surface-glass: oklch(100% 0 0); 
-  
-  --hero-wash: oklch(98% 0 0); /* Solid color, no gradient wash */
+  /* Backgrounds - slightly warm white like Radisys/Peplink */
+  --background: #F8FAFC;
+  --foreground: #0F172A;        /* Near-black navy text */
+
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+
+  --primary: #1D4ED8;           /* Radisys/Quectel electric blue */
+  --primary-foreground: #FFFFFF;
+
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;  /* Slate-500 — Peplink body text style */
+
+  /* Peplink-inspired vibrant orange accent */
+  --accent: #EA580C;            /* Orange-600 — matches Peplink CTAs */
+  --accent-foreground: #FFFFFF;
+
+  --border: #E2E8F0;            /* Subtle cool-gray border (Quectel style) */
+
+  /* ── BRAND BLUES ── */
+  /* Main brand: Radisys electric blue #0066FF → OKLCH equiv */
+  --brand: #1D4ED8;             /* Electric corporate blue */
+  --brand-deep: #0F172A;        /* Radisys/Taoglas deep navy almost-black */
+  --brand-bright: #3B82F6;      /* Lighter vivid blue for accents */
+  --brand-foreground: #FFFFFF;
+
+  /* Taoglas signal green for live/active indicators */
+  --signal: #16A34A;            /* Green-600 */
+
+  /* Section backgrounds - alternating like Peplink */
+  --paper: #F8FAFC;             /* Barely-blue white */
+  --paper-2: #F0F4FF;           /* Very subtle blue tint for alt sections */
+  --surface: #FFFFFF;
+  --surface-glass: #FFFFFF;
+
+  --hero-wash: #F8FAFC;
 }
 
 .bg-hero-wash {
