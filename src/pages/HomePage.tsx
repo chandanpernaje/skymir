@@ -158,23 +158,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-        PARTNERS STRIP — Navy background like Radisys
+        PARTNERS STRIP
         ========================================
       */}
-      <section className="py-14 overflow-hidden" style={{background: 'linear-gradient(90deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'}}>
+      <section className="py-16 md:py-24 bg-background overflow-hidden">
         <div className="mx-auto max-w-[1400px]">
-          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-10">
+          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-12">
             Deploying with global industry leaders
           </p>
           
           <div className="relative flex w-max animate-marquee items-center group/marquee hover:[animation-play-state:paused]">
             {[...partners, ...partners, ...partners].map((partner, idx) => (
               <div key={`${partner.name}-${idx}`} className="flex justify-center px-4 sm:px-6">
-                <div className="flex items-center justify-center p-6 bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white hover:shadow-lg hover:-translate-y-1 rounded-sm w-[160px] h-[100px] sm:w-[200px] sm:h-[120px] group">
+                <div className="flex items-center justify-center p-6 bg-white shadow-sm ring-1 ring-border transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:ring-brand rounded-sm w-[160px] h-[100px] sm:w-[200px] sm:h-[120px]">
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-12 w-auto object-contain brightness-0 invert opacity-60 group-hover:brightness-100 group-hover:invert-0 group-hover:opacity-100 transition-all duration-300"
+                    className="max-h-12 w-auto object-contain transition-all duration-300"
                   />
                 </div>
               </div>
