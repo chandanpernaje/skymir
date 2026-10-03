@@ -97,7 +97,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         HERO SECTION 
         ========================================
       */}
-      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden" style={{background: 'linear-gradient(135deg, #F8FAFC 0%, #F0F4FF 50%, #EEF2FF 100%)'}}>
+      <section className="relative min-h-[90vh] flex items-center pt-24 pb-10 overflow-hidden" style={{background: 'linear-gradient(135deg, #F8FAFC 0%, #F0F4FF 50%, #EEF2FF 100%)'}}>
         {/* Dynamic Abstract Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full blur-[120px] mix-blend-multiply animate-float" style={{background: 'rgba(29,78,216,0.12)'}} />
@@ -108,7 +108,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
            <div className="scan-line" />
         </div>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-12">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-8 lg:gap-16 px-4 sm:px-6 py-6 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-12">
           <motion.div variants={staggerContainer} initial="hidden" animate="show" className="relative">
             <motion.h1 variants={fadeUp} className="max-w-[12ch] text-balance text-5xl font-bold leading-[1.05] tracking-tight text-brand-deep sm:text-7xl lg:text-[5.5rem]">
               Signal <br/>
@@ -143,7 +143,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, x: 40 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} 
-            className="relative z-10 w-full mt-10 lg:mt-0"
+            className="relative z-10 w-full mt-4 lg:mt-0"
           >
             <div className="relative rounded-[32px] p-2 bg-white/40 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] ring-1 ring-border backdrop-blur-xl">
                <HeroCarousel />
