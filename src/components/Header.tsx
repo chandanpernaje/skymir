@@ -75,14 +75,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             return (
               <a
                 key={item.href}
-                className={`relative px-4 py-2 text-sm font-semibold transition-colors uppercase tracking-wide rounded-sm ${
-                  isActive ? 'text-brand' : 'text-foreground hover:text-brand'
+                className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 uppercase tracking-wide rounded-sm brand-underline ${
+                  isActive
+                    ? 'text-brand'
+                    : 'text-slate-700 hover:text-brand'
                 }`}
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.href)}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {item.label}
+                {isActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-brand rounded-full" />}
               </a>
             );
           })}
@@ -126,8 +129,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   return (
                     <a
                       key={item.href}
-                      className={`block rounded-sm px-4 py-3 text-sm font-medium transition-colors ${
-                        isActive ? 'bg-brand/10 text-brand font-bold' : 'text-foreground hover:bg-paper hover:text-brand'
+                      className={`block rounded-sm px-4 py-3 text-sm font-semibold transition-colors ${
+                        isActive ? 'bg-brand/10 text-brand font-bold' : 'text-slate-700 hover:bg-paper hover:text-brand'
                       }`}
                       href={item.href}
                       onClick={(e) => handleLinkClick(e, item.href)}
