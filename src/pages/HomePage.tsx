@@ -218,7 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </motion.a>
           </motion.div>
 
-          <div className="grid gap-4 sm:gap-8 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 title: 'TAMP Series',
@@ -247,29 +247,35 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15, type: 'spring' as const, bounce: 0.2 }}
                 onClick={() => onNavigate('/products')}
-                className={`card-glow group cursor-pointer p-1.5 sm:p-2 ${
-                  product.featured 
-                  ? 'bg-brand/5 ring-1 ring-brand/30 rounded-sm' 
-                  : 'bg-white shadow-sm ring-1 ring-border rounded-sm'
+                className={`card-glow group cursor-pointer overflow-hidden rounded-sm ${
+                  product.featured
+                  ? 'bg-brand/5 ring-1 ring-brand/30'
+                  : 'bg-white shadow-sm ring-1 ring-border'
                 }`}
               >
-                <div className={`h-full flex flex-row sm:flex-col p-3 sm:p-8 transition-colors ${product.featured ? 'bg-transparent' : 'bg-transparent'}`}>
-                  {/* Image Left on Mobile, Top on Desktop */}
-                  <div className="w-[100px] shrink-0 sm:w-full">
-                    <div className="relative h-full w-full aspect-square sm:aspect-[4/3] overflow-hidden bg-paper">
-                      <img src={product.img} alt={product.title} className="absolute inset-0 w-full h-full object-contain p-2 sm:p-8" />
-                    </div>
-                  </div>
-                  
-                  {/* Content Right on Mobile, Bottom on Desktop */}
-                  <div className="flex flex-col flex-1 justify-center pl-4 sm:pl-0 sm:pt-8">
-                    <p className="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
-                      {product.cat}
-                    </p>
-                    <h3 className="mt-1 sm:mt-2 text-lg sm:text-2xl font-extrabold text-brand-deep">{product.title}</h3>
-                    <p className="hidden sm:block mt-2.5 sm:mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground font-medium">
-                      {product.desc}
-                    </p>
+                {/* Image area — fixed aspect ratio, fills the full card width */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-paper">
+                  <img
+                    src={product.img}
+                    alt={product.title}
+                    className="absolute inset-0 w-full h-full object-contain p-4 sm:p-6 transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Category badge overlaid top-left */}
+                  <span className="absolute top-3 left-3 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-accent bg-white/90 px-2 py-1 rounded-sm shadow-sm">
+                    {product.cat}
+                  </span>
+                </div>
+
+                {/* Text content below image */}
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-xl font-extrabold text-brand-deep group-hover:text-brand transition-colors">
+                    {product.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground font-medium">
+                    {product.desc}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-bold text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+                    View products <ChevronRight className="size-3.5" />
                   </div>
                 </div>
               </motion.article>
