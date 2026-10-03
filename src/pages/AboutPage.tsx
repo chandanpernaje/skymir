@@ -39,6 +39,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               </span>
             </div>
             
+            <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.05] text-brand-deep">
+              Pioneering The <br />
+              <span className="text-brand font-bold">
+                RF Frontier.
+              </span>
+            </h1>
+            
+            <p className="mt-6 md:mt-8 max-w-[46ch] text-pretty text-base md:text-lg leading-relaxed text-muted-foreground lg:text-xl">
+              {SKYMIRR_DATA.company.mission}
+            </p>
           </motion.div>
         </div>
       </section>
