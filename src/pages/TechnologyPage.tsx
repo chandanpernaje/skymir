@@ -13,7 +13,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
     <main>
       {/* Hero */}
       <section className="border-b border-border bg-sky-100">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
           <span className="inline-flex items-center gap-2 rounded-sm bg-surface px-3 py-1.5 font-mono text-[10px] uppercase text-brand shadow-sm ring-1 ring-border">
             <span className="size-1.5 bg-signal" />
             Proprietary RF Physics

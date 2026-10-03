@@ -181,7 +181,7 @@ export function LatestPage({ initialCategory = 'all', onOpenQuote, onNavigate }:
     <div ref={containerRef} className="min-h-screen bg-sky-100">
       {/* Header Banner */}
       <section className="border-b border-border bg-sky-100">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24 pt-24 sm:pt-28">
+        <div className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

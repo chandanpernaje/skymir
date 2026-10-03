@@ -15,7 +15,7 @@ export const EngineeringPage: React.FC<EngineeringPageProps> = ({ onNavigate }) 
   return (
     <main>
       <section className="border-b border-border bg-sky-100">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
           <p className="font-mono text-[11px] uppercase text-brand">Engineering &amp; operation</p>
           <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
             A direct path from RF research to production.
