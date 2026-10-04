@@ -17,10 +17,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   );
 
   return (
-    <main className="bg-sky-100 font-sans selection:bg-brand selection:text-white">
+    <main className="bg-background font-sans selection:bg-brand selection:text-white">
       
       {/* 1. HERO - MATCHES HOME PAGE */}
-      <section className="relative min-h-[50vh] flex items-center pt-28 pb-12 overflow-hidden border-b border-border bg-sky-100">
+      <section className="relative min-h-[50vh] flex items-center pt-28 pb-12 overflow-hidden border-b border-border bg-paper">
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] bg-[url('/images/grid.svg')] bg-center opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
         </div>
@@ -102,11 +102,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 3. FAST FACTS GRID */}
-      <section className="py-24 bg-sky-100 border-b border-border">
+      <section className="py-24 bg-paper-2 border-b border-border">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
+            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
               <div className="w-12 h-12 bg-brand/10 text-brand flex items-center justify-center mb-6 rounded-sm group-hover:bg-brand group-hover:text-white transition-colors duration-300">
                 <Globe2 className="w-6 h-6" />
               </div>
@@ -114,7 +114,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Year Founded</p>
             </div>
 
-            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
+            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
               <div className="w-12 h-12 bg-brand/10 text-brand flex items-center justify-center mb-6 rounded-sm group-hover:bg-brand group-hover:text-white transition-colors duration-300">
                 <Activity className="w-6 h-6" />
               </div>
@@ -122,7 +122,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Patents Held</p>
             </div>
 
-            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
+            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
               <div className="w-12 h-12 bg-brand/10 text-brand flex items-center justify-center mb-6 rounded-sm group-hover:bg-brand group-hover:text-white transition-colors duration-300">
                 <Target className="w-6 h-6" />
               </div>
@@ -130,7 +130,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Innovation Honoree</p>
             </div>
 
-            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
+            <div className="bg-white p-8 rounded-sm border border-border shadow-sm flex flex-col items-start text-left hover:-translate-y-1 transition-transform duration-300 hover:border-brand group">
               <div className="w-12 h-12 bg-brand/10 text-brand flex items-center justify-center mb-6 rounded-sm group-hover:bg-brand group-hover:text-white transition-colors duration-300">
                 <ShieldCheck className="w-6 h-6" />
               </div>
@@ -143,15 +143,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 4. GLOBAL PRESENCE - LIGHT MATCH */}
-      <section className="py-24 bg-paper border-b border-border text-foreground relative overflow-hidden">
+      <section className="py-24 bg-paper-2 border-b border-border text-foreground relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-           <div className="text-center max-w-3xl mx-auto mb-16">
+           <div className="text-left mb-16">
              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 mb-6">
                 <Globe2 className="size-4 text-brand" />
                 <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">Global Operations</span>
              </div>
+             <div className="flex justify-start mb-6"><div className="accent-line" /></div>
              <h2 className="text-3xl sm:text-5xl font-bold mb-6 tracking-tight text-brand-deep">Supporting worldwide infrastructure.</h2>
-             <p className="text-muted-foreground text-lg font-medium">Delivering innovation from our strategic telecommunications hubs.</p>
+             <p className="text-muted-foreground text-lg font-medium max-w-2xl">Delivering innovation from our strategic telecommunications hubs.</p>
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

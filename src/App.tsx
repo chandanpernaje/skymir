@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import type { RoutePath } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -89,7 +90,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-brand selection:text-brand-foreground">
       <Header currentPath={currentPath} onNavigate={navigate} />
-      {renderContent()}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={currentPath}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="w-full flex-1"
+        >
+          {renderContent()}
+        </motion.div>
+      </AnimatePresence>
       <Footer onNavigate={navigate} />
     </div>
   );

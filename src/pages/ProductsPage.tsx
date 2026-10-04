@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, FileText, Search, SlidersHorizontal } from 'lucide-react';
 import type { RoutePath, ProductSpec } from '../types';
 import { productsData } from '../data/productsData';
@@ -99,9 +100,15 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
 
       {/* Product Grid */}
       <section className="mx-auto max-w-[1400px] px-4 py-8 sm:px-6 sm:py-12 lg:px-10">
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+        <motion.div layout className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
           {filteredProducts.map((product) => (
-            <article
+            <motion.article
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
               key={product.id}
               className="group flex flex-col justify-between rounded-md bg-surface p-3 sm:p-6 shadow-sm ring-1 ring-border hover-gradient-border"
             >
@@ -165,9 +172,10 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
                   <span className="hidden sm:inline">Datasheet</span>
                 </button>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
         {filteredProducts.length === 0 && (
           <div className="py-20 text-center">

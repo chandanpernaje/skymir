@@ -1,5 +1,6 @@
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Activity } from 'lucide-react';
+import { ArrowRight, Activity, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ApplicationsSectionProps {
   onNavigate?: (page: string) => void;
@@ -29,14 +30,24 @@ export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {
     },
   ];
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = current.clientWidth >= 768 ? current.clientWidth / 2 : current.clientWidth * 0.8;
+      current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="applications" className="py-24 bg-sky-100 relative border-t border-border">
+    <section id="applications" className="pt-24 pb-4 bg-gradient-to-b from-white to-blue-50/50 relative border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         
         {/* Header Section (Left Aligned to match HomePage Hardware Portfolio) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/10 mb-6">
               <Activity className="size-4 text-brand" />
               <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">
                 Deployment Scenarios
@@ -53,19 +64,48 @@ export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {
             </p>
           </div>
           
-          {onNavigate && (
-            <button
-              onClick={() => onNavigate('applications')}
-              className="group inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-bold text-brand-deep shadow-sm ring-1 ring-border transition-all hover:bg-brand hover:text-white rounded-sm shrink-0"
-            >
-              View All Applications
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </button>
-          )}
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="hidden sm:flex items-center gap-2">
+              <button 
+                onClick={() => scroll('left')} 
+                className="inline-flex items-center justify-center h-12 w-12 rounded-full border border-border bg-white text-brand-deep hover:bg-brand hover:text-white transition-colors shadow-sm cursor-pointer"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+              <button 
+                onClick={() => scroll('right')} 
+                className="inline-flex items-center justify-center h-12 w-12 rounded-full border border-border bg-white text-brand-deep hover:bg-brand hover:text-white transition-colors shadow-sm cursor-pointer"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="size-5" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Horizontal Slider / Scroll Container */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 hide-scrollbar -mx-6 px-6 lg:-mx-12 lg:px-12">
+        {/* Horizontal Slider / Scroll Container Wrapper */}
+        <div className="relative">
+          {/* Mobile Overlay Arrows (Hidden on Desktop) */}
+          <button 
+            onClick={() => scroll('left')} 
+            className="absolute left-0 top-[225px] -translate-y-1/2 z-20 sm:hidden inline-flex items-center justify-center h-12 w-12 rounded-full border border-border bg-white/95 backdrop-blur-md text-brand-deep shadow-xl"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="size-6" />
+          </button>
+          <button 
+            onClick={() => scroll('right')} 
+            className="absolute right-0 top-[225px] -translate-y-1/2 z-20 sm:hidden inline-flex items-center justify-center h-12 w-12 rounded-full border border-border bg-white/95 backdrop-blur-md text-brand-deep shadow-xl"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="size-6" />
+          </button>
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 hide-scrollbar -mx-6 px-6 lg:-mx-12 lg:px-12 scroll-smooth"
+          >
           {applications.map((app, idx) => (
             <motion.div
               key={app.id}
@@ -73,8 +113,7 @@ export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: idx * 0.1, type: 'spring', bounce: 0.2 }}
-              onClick={() => onNavigate ? onNavigate('applications') : null}
-              className="group relative rounded-md overflow-hidden cursor-pointer bg-paper border border-border hover:border-brand transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-[450px] min-w-[300px] sm:min-w-[350px] md:min-w-[400px] flex-1 shrink-0 snap-center sm:snap-start"
+              className="group relative rounded-sm overflow-hidden bg-paper border border-border h-[450px] min-w-[300px] sm:min-w-[350px] md:min-w-[400px] flex-1 shrink-0 snap-center sm:snap-start"
             >
               <div className="absolute inset-0 bg-brand-deep">
                 <img
@@ -98,6 +137,7 @@ export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {
               </div>
             </motion.div>
           ))}
+        </div>
         </div>
       </div>
     </section>

@@ -29,52 +29,43 @@
 }
 
 :root {
-  --radius: 0px; /* STRICT B2B: Completely square corners */
+  --radius: 0px; /* Strict industrial B2B radius (Radisys/Taoglas style) */
   
   /* =============================================
-     PREMIUM B2B TELECOM PALETTE
-     Inspired by: Radisys (navy+electric blue)
-                  Peplink  (navy+vibrant orange)
-                  Quectel  (royal blue+cobalt)
-                  Taoglas  (slate navy+signal green)
+     INDUSTRIAL CORPORATE PALETTE (Radisys/Taoglas inspired)
      ============================================= */
 
-  /* Backgrounds - slightly warm white like Radisys/Peplink */
-  --background: #F8FAFC;
-  --foreground: #0F172A;        /* Near-black navy text */
+  --background: #FFFFFF; /* Crisp white */
+  --foreground: #1E293B; /* Slate-800, strictly no black */
 
-  --card: #FFFFFF;
-  --card-foreground: #0F172A;
+  --card: #F8FAFC;
+  --card-foreground: #1E293B;
 
-  --primary: #1D4ED8;           /* Radisys/Quectel electric blue */
+  --primary: #0033A0; /* Deep corporate blue */
   --primary-foreground: #FFFFFF;
 
   --muted: #F1F5F9;
-  --muted-foreground: #64748B;  /* Slate-500 — Peplink body text style */
+  --muted-foreground: #64748B; 
 
-  /* Peplink-inspired vibrant orange accent */
-  --accent: #EA580C;            /* Orange-600 — matches Peplink CTAs */
+  --accent: #E5007E; /* Vibrant Magenta/Red for tech energy */
   --accent-foreground: #FFFFFF;
 
-  --border: #E2E8F0;            /* Subtle cool-gray border (Quectel style) */
+  --border: #E2E8F0; /* Clean, professional border */
 
   /* ── BRAND BLUES ── */
-  /* Main brand: Radisys electric blue #0066FF → OKLCH equiv */
-  --brand: #1D4ED8;             /* Electric corporate blue */
-  --brand-deep: #0F172A;        /* Radisys/Taoglas deep navy almost-black */
-  --brand-bright: #3B82F6;      /* Lighter vivid blue for accents */
+  --brand: #0033A0; /* Deep Trust Blue */
+  --brand-deep: #001A57; /* Very Deep Navy */
+  --brand-bright: #0055FF; /* Bright Tech Blue */
   --brand-foreground: #FFFFFF;
 
-  /* Taoglas signal green for live/active indicators */
-  --signal: #16A34A;            /* Green-600 */
+  --signal: #00A859; /* Corporate green */
 
-  /* Section backgrounds - alternating like Peplink */
-  --paper: #F8FAFC;             /* Barely-blue white */
-  --paper-2: #F0F4FF;           /* Very subtle blue tint for alt sections */
-  --surface: #FFFFFF;
-  --surface-glass: #FFFFFF;
+  --paper: #FFFFFF;
+  --paper-2: #F1F5F9;
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-glass: rgba(255, 255, 255, 0.85);
 
-  --hero-wash: #F8FAFC;
+  --hero-wash: linear-gradient(135deg, #F8FAFC 0%, #E0F2FE 100%);
 }
 
 .bg-hero-wash {
@@ -83,13 +74,19 @@
 
 .glass-panel {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .text-gradient {
-  /* Disabled: Corporate sites use solid text */
-  color: var(--brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, var(--brand) 0%, var(--brand-bright) 100%);
+  color: var(--brand); /* Fallback */
 }
 
 /* =============================================

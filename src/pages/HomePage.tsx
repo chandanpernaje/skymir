@@ -94,64 +94,66 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     <main className="bg-background text-foreground selection:bg-brand selection:text-brand-foreground overflow-hidden">
       {/* 
         ========================================
-        HERO SECTION 
+        HERO CAROUSEL SECTION (TOP)
         ========================================
       */}
-      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden" style={{background: 'linear-gradient(135deg, #F8FAFC 0%, #F0F4FF 50%, #EEF2FF 100%)'}}>
-        {/* Dynamic Abstract Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full blur-[120px] mix-blend-multiply animate-float" style={{background: 'rgba(29,78,216,0.12)'}} />
-           <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[130px] mix-blend-multiply animate-float" style={{background: 'rgba(59,130,246,0.10)', animationDelay: '3s', animationDuration: '10s'}} />
-           <div className="absolute top-[30%] right-[20%] w-[30vw] h-[30vw] rounded-full blur-[100px] mix-blend-multiply animate-float" style={{background: 'rgba(234,88,12,0.06)', animationDelay: '1.5s'}} />
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[40vh] grid-bg opacity-40" />
-           {/* Tech scan line */}
-           <div className="scan-line" />
+      <section className="relative pt-16 sm:pt-20 bg-background">
+        <div className="w-full">
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} 
+            className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2.5/1] overflow-hidden bg-transparent border-b border-border"
+          >
+             <HeroCarousel />
+          </motion.div>
         </div>
+      </section>
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] items-center gap-16 px-6 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:px-12">
-          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="relative">
-            <motion.h1 variants={fadeUp} className="max-w-[12ch] text-balance text-5xl font-bold leading-[1.05] tracking-tight text-brand-deep sm:text-7xl lg:text-[5.5rem]">
-              Signal <br/>
-              <span className="text-brand font-bold">without limits.</span>
+      {/* 
+        ========================================
+        HERO TEXT SECTION (BOTTOM)
+        ========================================
+      */}
+      <section className="relative pb-24 overflow-hidden bg-background border-b border-border z-10">
+        {/* Abstract Top Grid */}
+        <div className="absolute inset-0 z-0 bg-[url('/images/grid.svg')] bg-center opacity-[0.03]" />
+
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12 flex flex-col items-center text-center">
+          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="max-w-4xl mx-auto flex flex-col items-center">
+            
+            <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-brand/10 text-brand font-mono text-[11px] font-bold uppercase tracking-widest rounded-full border border-brand/20">
+              <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
+              Enterprise Wireless Systems
+            </motion.div>
+
+            <motion.h1 variants={fadeUp} className="text-balance text-6xl font-extrabold leading-[1.05] tracking-tight text-brand-deep sm:text-7xl lg:text-[5.5rem]">
+              Signal <br className="hidden sm:block"/>
+              <span className="text-brand">without limits.</span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-6 md:mt-8 max-w-[46ch] text-pretty text-base md:text-lg leading-relaxed text-muted-foreground lg:text-xl">
-              SkyMirr engineers premium enterprise wireless solutions. Experience unparalleled reliability with our proprietary <strong className="font-semibold text-brand-deep">MuLCAT®</strong> technology, designed for the world's most challenging environments.
+            <motion.p variants={fadeUp} className="mt-8 text-pretty text-lg md:text-xl leading-relaxed text-muted-foreground font-medium max-w-2xl">
+              SkyMirr engineers premium enterprise wireless solutions. Experience unparalleled reliability with our proprietary <strong className="font-extrabold text-brand-deep">MuLCAT®</strong> technology, designed for the world's most challenging environments.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-10 md:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
+            <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                className="btn-shimmer group relative inline-flex items-center justify-center gap-3 bg-accent px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-white transition-all hover:bg-brand hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-0.5"
+                className="group relative inline-flex items-center justify-center gap-3 bg-brand px-8 py-4 font-bold text-white transition-all hover:bg-brand-bright hover:shadow-lg rounded-sm"
                 href="/products"
                 onClick={(e) => handleNav(e, '/products')}
               >
-                <span className="relative z-10">Explore Hardware</span>
-                <ChevronRight className="size-5 relative z-10 transition-transform group-hover:translate-x-1" />
+                Explore Hardware
+                <ChevronRight className="size-5 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                className="group inline-flex items-center justify-center gap-2 bg-white px-6 sm:px-8 py-3.5 sm:py-4 font-bold text-brand-deep ring-1 ring-border transition-all hover:bg-paper hover:text-brand hover:ring-brand hover:-translate-y-0.5 hover:shadow-md"
+                className="group inline-flex items-center justify-center gap-2 bg-transparent px-8 py-4 font-bold text-brand-deep ring-2 ring-brand/30 transition-all hover:ring-brand hover:bg-brand/5 rounded-sm"
                 href="/technology"
                 onClick={(e) => handleNav(e, '/technology')}
               >
-                <Sparkles className="size-4 text-brand group-hover:rotate-12 transition-transform" />
+                <Sparkles className="size-4 text-brand transition-transform group-hover:rotate-12" />
                 Discover MuLCAT®
               </a>
             </motion.div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 40 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} 
-            className="relative z-10 w-full mt-10 lg:mt-0"
-          >
-            <div className="relative rounded-[32px] p-2 bg-white/40 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] ring-1 ring-border backdrop-blur-xl">
-               <HeroCarousel />
-            </div>
-            
-            {/* Decorative orbit line behind carousel */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full border border-brand/10 -z-10 hidden lg:block animate-[spin_60s_linear_infinite]" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full border border-brand-bright/10 -z-10 hidden lg:block animate-[spin_90s_linear_infinite_reverse]" />
           </motion.div>
         </div>
       </section>
@@ -163,7 +165,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       */}
       <section className="py-16 md:py-24 bg-background overflow-hidden">
         <div className="mx-auto max-w-[1400px]">
-          <p className="text-center font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-12">
+          <p className="text-left font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-12 px-6 lg:px-12">
             Deploying with global industry leaders
           </p>
           
@@ -188,7 +190,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         HARDWARE SHOWCASE 
         ========================================
       */}
-      <section className="relative py-24 lg:py-32 bg-paper-2 rounded-t-[40px] md:rounded-t-[80px]">
+      <section className="relative py-24 lg:py-32 bg-paper-2 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <motion.div 
             initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
@@ -247,10 +249,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15, type: 'spring' as const, bounce: 0.2 }}
                 onClick={() => onNavigate('/products')}
-                className={`card-glow group cursor-pointer p-1.5 sm:p-2 ${
+                className={`card-glow group cursor-pointer p-1 sm:p-1.5 ${
                   product.featured 
-                  ? 'bg-brand/5 ring-1 ring-brand/30 rounded-sm' 
-                  : 'bg-white shadow-sm ring-1 ring-border rounded-sm'
+                  ? 'bg-white ring-2 ring-brand rounded-sm shadow-md' 
+                  : 'bg-white shadow-sm ring-1 ring-border rounded-sm hover:shadow-lg hover:ring-brand/40'
                 }`}
               >
                 <div className={`h-full flex flex-row sm:flex-col p-3 sm:p-8 transition-colors ${product.featured ? 'bg-transparent' : 'bg-transparent'}`}>
@@ -280,6 +282,45 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
+        NEW ANIMATED METRICS SECTION
+        ========================================
+      */}
+      <section className="relative py-20 bg-brand-deep text-white border-y border-white/10">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-10 bg-brand" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[80px] opacity-10 bg-brand-bright" />
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('/images/grid.svg')] bg-center" />
+        </div>
+        
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:divide-x lg:divide-white/10">
+            {[
+              { label: 'Network Reliability', value: '99.99', suffix: '%' },
+              { label: 'Global Deployments', value: '50', suffix: '+' },
+              { label: 'Operating Range', value: '-40', suffix: ' to +85°C' },
+              { label: 'Continuous Uptime', value: '100', suffix: '%' }
+            ].map((metric, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: idx * 0.1, type: 'spring' }}
+                className={`flex flex-col items-start text-left ${idx % 2 !== 0 ? '' : ''} ${idx !== 0 ? 'lg:pl-8' : ''}`}
+              >
+                <div className="flex items-baseline gap-1 text-brand-bright mb-2">
+                  <span className="text-6xl lg:text-7xl font-extrabold tracking-tighter">{metric.value}</span>
+                  <span className="text-3xl lg:text-4xl font-bold">{metric.suffix}</span>
+                </div>
+                <p className="text-xs lg:text-sm font-semibold text-white/60 uppercase tracking-widest">{metric.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
         4. APPLICATIONS SECTION
         ========================================
       */}
@@ -299,17 +340,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       */}
       <section className="relative py-24 lg:py-32" style={{background: 'linear-gradient(180deg, #ffffff 0%, #F0F4FF 100%)'}}>
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-          <div className="text-center mb-20">
+          <div className="text-left mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 border border-brand/20 mb-6">
               <span className="ping-dot"><span className="w-2 h-2 rounded-full bg-brand block" /></span>
               <Zap className="size-3.5 text-brand" />
               <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">Industry Solutions</span>
             </div>
-            <div className="flex justify-center mb-6"><div className="accent-line" /></div>
+            <div className="flex justify-start mb-6"><div className="accent-line" /></div>
             <h2 className="text-4xl md:text-5xl font-bold text-brand-deep tracking-tight">
               Engineered for <span className="text-brand">Demanding Deployments</span>
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
               Whether connecting a smart retail storefront or a remote industrial site, SkyMirr hardware provides zero-compromise connectivity.
             </p>
           </div>
@@ -318,12 +359,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {solutions.map((item, idx) => {
               const Icon = item.icon;
               const isActive = activeSolution === idx;
-              // Per-card accent colors: Blue, Orange, Teal, Violet
+              // Per-card accent colors: matching corporate blues
               const accents = [
-                { bg: '#1D4ED8', light: '#EFF6FF', text: '#1D4ED8', border: '#BFDBFE' },
-                { bg: '#EA580C', light: '#FFF7ED', text: '#EA580C', border: '#FED7AA' },
-                { bg: '#0D9488', light: '#F0FDFA', text: '#0D9488', border: '#99F6E4' },
-                { bg: '#7C3AED', light: '#F5F3FF', text: '#7C3AED', border: '#DDD6FE' },
+                { bg: '#0284C7', light: '#F0F9FF', text: '#0284C7', border: '#BAE6FD' },
+                { bg: '#0369A1', light: '#E0F2FE', text: '#0369A1', border: '#7DD3FC' },
+                { bg: '#075985', light: '#F0F9FF', text: '#075985', border: '#BAE6FD' },
+                { bg: '#0C4A6E', light: '#E0F2FE', text: '#0C4A6E', border: '#7DD3FC' },
               ];
               const accent = accents[idx % accents.length];
               return (
@@ -335,17 +376,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   transition={{ delay: idx * 0.12, duration: 0.5 }}
                   onClick={() => setActiveSolution(idx)}
                   style={isActive ? {background: accent.bg, borderColor: accent.bg} : {}}
-                  className={`group relative cursor-pointer overflow-hidden p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border ${
+                  className={`group relative cursor-pointer overflow-hidden p-8 transition-all duration-300 hover:-translate-y-1 border rounded-sm ${
                     isActive
-                    ? 'shadow-lg text-white'
-                    : 'bg-white border-border hover:border-opacity-50 shadow-sm'
+                    ? 'shadow-xl text-white'
+                    : 'bg-white border-border hover:border-brand shadow-sm hover:shadow-md'
                   }`}
                 >
                   {/* Top accent bar */}
                   {!isActive && <div className="absolute top-0 left-0 right-0 h-1" style={{background: accent.bg}} />}
                   
                   <div
-                    className={`mb-8 inline-flex p-4 transition-all duration-300`}
+                    className={`mb-8 inline-flex p-4 transition-all duration-300 rounded-sm`}
                     style={isActive ? {background: 'rgba(255,255,255,0.2)', color: 'white'} : {background: accent.light, color: accent.text}}
                   >
                     <Icon className="size-7" />
@@ -383,46 +424,144 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-        PREMIUM CTA SECTION - Radisys/Peplink inspired
+
+
+      {/* 
+        ========================================
+        NEW CTA: TAKE A CLOSER LOOK
         ========================================
       */}
-      <section className="relative py-32 overflow-hidden" style={{background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 45%, #1D4ED8 100%)'}}>
+      <section className="relative py-16 bg-paper-2 border-t border-border overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }} 
+            whileInView={{ opacity: 1, scale: 1 }} 
+            viewport={{ once: true }}
+            className="bg-white rounded-sm border border-border shadow-sm p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-12"
+          >
+            
+            {/* Left Content */}
+            <div className="md:w-1/2 text-center md:text-left space-y-6 order-2 md:order-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-deep tracking-tight uppercase">
+                Take a closer look....
+              </h2>
+              <p className="text-base sm:text-lg text-muted-foreground font-medium max-w-md mx-auto md:mx-0">
+                Explore our full portfolio of enterprise wireless hardware and custom high-performance antenna solutions.
+              </p>
+              <div className="pt-4">
+                <a
+                  href="/products"
+                  onClick={(e) => handleNav(e, '/products')}
+                  className="inline-flex items-center justify-center gap-3 bg-brand px-8 py-4 text-sm font-bold text-white transition-all hover:bg-brand-bright rounded-sm hover:shadow-lg w-full sm:w-auto"
+                >
+                  SEE OUR AVAILABLE PRODUCTS
+                  <ArrowRight className="size-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right Image (Antennas) */}
+            <div className="md:w-1/2 w-full flex justify-center order-1 md:order-2 mb-8 md:mb-0">
+              <img 
+                src="/images/our-products.png" 
+                alt="Available Products" 
+                className="w-full h-[200px] sm:h-[300px] object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500" 
+              />
+            </div>
+
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        PREMIUM CTA & GLOBAL PRESENCE
+        ========================================
+      */}
+      <section className="relative py-24 lg:py-32 overflow-hidden" style={{background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 45%, #1D4ED8 100%)'}}>
         {/* Diagonal stripe overlay */}
         <div className="absolute inset-0 opacity-[0.04]" style={{backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px'}} />
         {/* Glowing orbs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{background: '#3B82F6'}} />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-15" style={{background: '#EA580C'}} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{background: '#0284C7'}} />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-15" style={{background: '#38BDF8'}} />
         
-        <div className="relative mx-auto max-w-5xl px-6 text-center z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/20 bg-white/5">
-              <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
-              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white/70">Ready to Connect</span>
-            </div>
-            <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl leading-[1.05]">
-              Elevate your <br className="hidden sm:block"/>
-              <span className="text-[#FB923C]">connectivity.</span>
-            </h2>
-            <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto font-medium">
-              Partner with SkyMirr for custom RF design, system-level consulting, and enterprise-grade wireless hardware deployment.
-            </p>
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                className="btn-shimmer w-full sm:w-auto bg-accent px-10 py-5 text-base font-bold text-white transition-all hover:bg-orange-500 hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-0.5"
-                href="/contact"
-                onClick={(e) => handleNav(e, '/contact')}
-              >
-                Start a Project
-              </a>
-              <a
-                className="w-full sm:w-auto bg-white/10 px-10 py-5 text-base font-bold text-white ring-1 ring-white/20 transition-all hover:bg-white hover:text-brand-deep hover:-translate-y-0.5"
-                href="/design-services"
-                onClick={(e) => handleNav(e, '/design-services')}
-              >
-                View Design Services
-              </a>
-            </div>
-          </motion.div>
+        <div className="relative mx-auto max-w-[1400px] px-6 lg:px-12 z-10 flex flex-col lg:flex-row gap-16 lg:gap-24">
+          
+          {/* Left: Elevate Connectivity */}
+          <div className="lg:w-1/2">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="max-w-xl text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/20 bg-white/5 rounded-sm">
+                <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white/90">Ready to Connect</span>
+              </div>
+              <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl leading-[1.05]">
+                Elevate your <br className="hidden sm:block"/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-bright to-accent">connectivity.</span>
+              </h2>
+              <p className="mt-8 text-xl text-white/70 font-medium">
+                Partner with SkyMirr for custom RF design, system-level consulting, and enterprise-grade wireless hardware deployment.
+              </p>
+              <div className="mt-12 flex flex-col sm:flex-row items-start justify-start gap-4">
+                <a
+                  className="w-full sm:w-auto bg-brand px-10 py-5 text-sm font-bold text-white transition-all hover:bg-brand-bright rounded-sm hover:shadow-lg"
+                  href="/contact"
+                  onClick={(e) => handleNav(e, '/contact')}
+                >
+                  START A PROJECT
+                </a>
+                <a
+                  className="w-full sm:w-auto bg-white/10 px-10 py-5 text-sm font-bold text-white ring-1 ring-white/20 transition-all hover:bg-white hover:text-brand-deep rounded-sm"
+                  href="/design-services"
+                  onClick={(e) => handleNav(e, '/design-services')}
+                >
+                  VIEW DESIGN SERVICES
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right: Global Scale Card */}
+          <div className="lg:w-1/2 flex flex-col justify-center">
+            <motion.div 
+              initial={{ opacity: 0, x: 40 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative p-8 sm:p-12 rounded-sm border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand-bright/20 text-brand-bright font-mono text-[10px] font-bold uppercase tracking-widest mb-6">
+                <Globe className="size-3.5" />
+                Worldwide Deployments
+              </div>
+              
+              <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.1] mb-4">
+                Global Scale.<br/>
+                <span className="text-brand-bright">Local Reliability.</span>
+              </h3>
+              
+              <p className="text-base text-white/70 font-medium leading-relaxed mb-10">
+                SkyMirr technology powers mission-critical network deployments across the most demanding RF environments on Earth.
+              </p>
+              
+              <div className="h-px w-full bg-gradient-to-r from-white/20 to-transparent mb-8" />
+              
+              <div className="flex flex-col sm:flex-row gap-8 sm:gap-12">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="ping-dot"><span className="w-2 h-2 rounded-full bg-signal block" /></span>
+                    <div className="text-3xl sm:text-4xl font-extrabold text-white">10,000<span className="text-brand-bright">+</span></div>
+                  </div>
+                  <div className="text-xs font-bold text-white/60 uppercase tracking-widest ml-4">Active Endpoints</div>
+                </div>
+                
+                <div>
+                  <div className="text-3xl sm:text-4xl font-extrabold text-white mb-1">50<span className="text-brand-bright">+</span></div>
+                  <div className="text-xs font-bold text-white/60 uppercase tracking-widest">Countries</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
         </div>
       </section>
     </main>

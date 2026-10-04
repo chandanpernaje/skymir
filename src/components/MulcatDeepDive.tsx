@@ -67,7 +67,7 @@ export function MulcatDeepDive({ onNavigate }: MulcatDeepDiveProps = {}) {
   };
 
   return (
-    <section id="technology" className="py-24 bg-paper-2 relative overflow-hidden font-sans border-t border-border">
+    <section id="technology" className="py-16 lg:py-20 bg-paper-2 relative overflow-hidden font-sans border-t border-border">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
@@ -133,7 +133,7 @@ export function MulcatDeepDive({ onNavigate }: MulcatDeepDiveProps = {}) {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="relative bg-black border border-border overflow-hidden shadow-sm group aspect-[4/3] sm:aspect-[16/10] rounded-sm"
+            className="relative bg-brand-deep border border-border overflow-hidden shadow-sm group aspect-[4/3] sm:aspect-[16/10] rounded-sm"
           >
             <video 
               ref={videoRef}

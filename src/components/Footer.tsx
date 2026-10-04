@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer style={{background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%)'}}>
       {/* Top colored accent bar */}
-      <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #1D4ED8 0%, #3B82F6 40%, #0D9488 70%, #7C3AED 100%)'}} />
+      <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #0284C7 0%, #38BDF8 50%, #0C4A6E 100%)'}} />
 
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
         {/* Main footer grid */}
@@ -114,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Company Column */}
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest font-bold mb-5" style={{color: '#7C3AED'}}>Company</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest font-bold mb-5" style={{color: '#0369A1'}}>Company</p>
             <nav className="grid gap-3">
               {[
                 { label: 'About SkyMirr', path: '/about' },

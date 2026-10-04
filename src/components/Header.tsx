@@ -10,12 +10,13 @@ interface HeaderProps {
 }
 
 const navItems: { label: string; href: RoutePath }[] = [
+  { label: 'Home', href: '/' },
   { label: 'Products', href: '/products' },
   { label: 'Technology', href: '/technology' },
   { label: 'Design services', href: '/design-services' },
-  { label: 'Engineering', href: '/engineering' },
   { label: 'Latest', href: '/latest' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
@@ -96,9 +97,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   useEffect(() => { if (mobileSearchOpen) setTimeout(() => mobileSearchInputRef.current?.focus(), 50); }, [mobileSearchOpen]);
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-gray-100 border-b border-border shadow-sm`}>
+    <header className={`fixed top-0 z-50 w-full transition-all duration-300 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm`}>
       {/* Colored top accent bar */}
-      <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #1D4ED8 0%, #3B82F6 40%, #0D9488 70%, #7C3AED 100%)'}} />
+      <div className="h-[3px] w-full" style={{background: 'linear-gradient(90deg, #0284C7 0%, #38BDF8 50%, #0C4A6E 100%)'}} />
 
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 lg:px-12 py-3 gap-3">
 
@@ -247,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
             {mobileMenuOpen && (
               <nav
-                className="absolute right-0 top-14 w-64 rounded-sm border border-border p-3 shadow-xl animate-in fade-in zoom-in-95 duration-200 z-50 bg-gray-100"
+                className="absolute right-0 top-14 w-64 rounded-xl border border-white/20 p-3 shadow-2xl animate-in fade-in zoom-in-95 duration-200 z-50 bg-white/90 backdrop-blur-xl"
                 aria-label="Mobile navigation"
               >
                 {navItems.map((item) => {
@@ -281,8 +282,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
       {/* ── Mobile Search Panel (slides in below header) ── */}
       {mobileSearchOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-gray-100 px-4 py-3 animate-in slide-in-from-top-2 duration-200">
-          <div className="flex items-center gap-2 bg-white border border-brand rounded-sm px-3 py-2.5 shadow-sm">
+        <div className="lg:hidden border-t border-white/20 bg-white/70 backdrop-blur-xl px-4 py-3 animate-in slide-in-from-top-2 duration-200">
+          <div className="flex items-center gap-2 bg-white border border-brand rounded-xl px-3 py-2.5 shadow-sm">
             <Search className="size-4 text-brand flex-shrink-0" />
             <input
               ref={mobileSearchInputRef}
