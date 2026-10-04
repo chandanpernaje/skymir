@@ -5,6 +5,26 @@ import type { RoutePath, ProductSpec } from '../types';
 import { productsData } from '../data/productsData';
 import { ProductSpecsModal } from '../components/ProductSpecsModal';
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 70, damping: 20 } }
+};
+
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
+
 interface ProductsPageProps {
   onNavigate: (path: RoutePath) => void;
 }
@@ -52,16 +72,16 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
   return (
     <main>
       {/* Product Hero */}
-      <section className="border-b border-border bg-sky-100">
-        <div className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
-          <p className="font-mono text-[11px] uppercase text-brand">Product portfolio</p>
-          <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
+      <section className="border-b border-border bg-sky-100 overflow-hidden">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
+          <motion.p variants={fadeUp} className="font-mono text-[11px] uppercase text-brand">Product portfolio</motion.p>
+          <motion.h1 variants={fadeUp} className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
             Wireless hardware engineered around the signal.
-          </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Explore SkyMirr’s antenna modules, connected router platforms, and embedded wireless technologies tested in world-class anechoic facilities.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       {/* Filter and Search Bar */}
@@ -197,15 +217,16 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Custom RF Configuration Banner */}
-      <section className="border-t border-border bg-sky-100">
+      <section className="border-t border-border bg-sky-100 overflow-hidden">
         <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-6 px-5 py-14 sm:px-6 md:flex-row md:items-center lg:px-10">
-          <div>
+          <motion.div variants={slideFromLeft} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}>
             <h2 className="text-2xl font-semibold text-brand-deep">Need a custom configuration?</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Our RF engineering team can help tune and simulate the ideal antenna system for your enclosure.
             </p>
-          </div>
-          <a
+          </motion.div>
+          <motion.a
+            variants={slideFromRight} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
             className="inline-flex min-h-11 items-center gap-2 rounded-md bg-brand py-2 pl-2 pr-4 text-sm font-bold text-white shadow-sm ring-1 ring-brand/30 transition-colors hover:bg-brand-deep"
             href="/contact"
             onClick={(e) => {
@@ -217,7 +238,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ onNavigate }) => {
               <ChevronRight className="size-4" aria-hidden="true" />
             </span>
             Talk to engineering
-          </a>
+          </motion.a>
         </div>
       </section>
 

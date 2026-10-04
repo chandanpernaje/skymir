@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Activity, ShieldCheck, Zap } from 'lucide-react';
 import { SKYMIRR_DATA } from '../data/skymirrData';
+import type { RoutePath } from '../types';
 
 interface MulcatDeepDiveProps {
-  onNavigate?: (page: string) => void;
+  onNavigate?: (path: RoutePath) => void;
 }
 
 export function MulcatDeepDive({ onNavigate }: MulcatDeepDiveProps = {}) {
@@ -117,7 +118,7 @@ export function MulcatDeepDive({ onNavigate }: MulcatDeepDiveProps = {}) {
 
             <div className="pt-2">
               <button
-                onClick={() => onNavigate?.('technology')}
+                onClick={() => onNavigate?.('/technology')}
                 className="font-bold text-blue-600 hover:text-blue-800 uppercase tracking-wider text-sm flex items-center gap-2 group transition-colors"
               >
                 Read Full Whitepaper

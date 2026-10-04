@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Activity, ChevronLeft, ChevronRight } from 'lucide-react';
+import type { RoutePath } from '../types';
 
 interface ApplicationsSectionProps {
-  onNavigate?: (page: string) => void;
+  onNavigate?: (path: RoutePath) => void;
 }
 
 export function ApplicationsSection({ onNavigate }: ApplicationsSectionProps) {

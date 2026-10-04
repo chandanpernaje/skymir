@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { WaveCanvas } from '../components/WaveCanvas';
 import { Calendar, ArrowRight, X, Sparkles, Newspaper, BookOpen, Layers } from 'lucide-react';
+import type { RoutePath } from '../types';
 
 export interface LatestItem {
   id: string;
@@ -152,7 +153,7 @@ export const LATEST_ITEMS: LatestItem[] = [
 interface LatestPageProps {
   initialCategory?: 'all' | 'press' | 'blogs';
   onOpenQuote?: (productName?: string) => void;
-  onNavigate?: (page: string) => void;
+  onNavigate?: (path: RoutePath) => void;
 }
 
 export function LatestPage({ initialCategory = 'all', onOpenQuote, onNavigate }: LatestPageProps) {

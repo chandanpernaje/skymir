@@ -1,10 +1,11 @@
 import { SKYMIRR_DATA } from '../data/skymirrData';
 import { WaveCanvas } from '../components/WaveCanvas';
 import { Radio, ShieldCheck, HeartPulse, Store, ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react';
+import type { RoutePath } from '../types';
 
 interface ApplicationsPageProps {
-  onOpenQuote: (productName?: string) => void;
-  onNavigate: (page: string) => void;
+  onOpenQuote?: (productName?: string) => void;
+  onNavigate: (path: RoutePath) => void;
 }
 
 export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPageProps) {
@@ -170,7 +171,7 @@ export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPagePr
                 <div className="pt-4 flex items-center gap-4">
 
                   <button
-                    onClick={() => onNavigate('contact')}
+                    onClick={() => onNavigate('/contact')}
                     className="text-xs font-bold text-brand uppercase tracking-wider hover:text-brand-deep transition-colors"
                   >
                     Speak with an RF Engineer &rarr;

@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Download, HelpCircle } from 'lucide-react';
 import { productsData } from '../data/productsData';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 70, damping: 20 } }
+};
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
+
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
 
 export const ContactPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'sales' | 'firmware'>('sales');
@@ -38,20 +59,56 @@ export const ContactPage: React.FC = () => {
   return (
     <main>
       <section className="border-b border-border bg-hero-wash">
-        <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
-          <p className="font-mono text-[11px] uppercase text-brand font-bold tracking-widest">Contact</p>
-          <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24">
+          <motion.p variants={fadeUp} className="font-mono text-[11px] uppercase text-brand font-bold tracking-widest">Contact</motion.p>
+          <motion.h1 variants={fadeUp} className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
             Let’s solve the <span className="text-brand">signal problem.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Tell us what you are building, the frequencies you need, and where the product will operate. Our RF team will help identify the next step.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
-      <section>
-        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-6 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:py-24">
-          <div className="rounded-[20px] bg-surface-glass p-6 ring-1 ring-border sm:p-8">
+      <section className="overflow-hidden">
+        <div className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-10 lg:py-24">
+          {/* Left Office & Corporate Card */}
+          <motion.div variants={slideFromLeft} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="flex flex-col justify-between rounded-md bg-brand-deep p-7 text-white sm:p-9 shadow-sm hover-gradient-border order-1">
+            <div className="relative z-10">
+              <MapPin className="size-6 text-brand-bright" aria-hidden="true" />
+              <p className="mt-6 font-mono text-[10px] uppercase text-signal">
+                United States Headquarters
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">SkyMirr, Inc.</h2>
+              <address className="mt-4 not-italic text-sm leading-7 text-brand-foreground/75">
+                930 S. Harbor City Blvd
+                <br />
+                Suite 403
+                <br />
+                Melbourne, FL 32901
+                <br />
+                United States
+              </address>
+
+              <div className="mt-8 border-t border-white/15 pt-6 text-xs text-white/80 space-y-2">
+                <div className="font-bold text-brand-bright uppercase tracking-wider text-[10px]">
+                  International Operations
+                </div>
+                <div>
+                  <span className="font-semibold text-white">R&amp;D Hub:</span> Songdo Techno Park, Incheon, South Korea
+                </div>
+                <div>
+                  <span className="font-semibold text-white">Manufacturing:</span> Binh Duong Precision Industrial Zone, Vietnam
+                </div>
+              </div>
+            </div>
+
+            <p className="relative z-10 mt-12 text-sm text-white/70">
+              When it has to connect, it has to be SkyMirr.
+            </p>
+          </motion.div>
+
+          <motion.div variants={slideFromRight} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="rounded-[20px] bg-surface-glass p-6 ring-1 ring-border sm:p-8 order-2">
             {/* Form Mode Selector */}
             <div className="flex items-center gap-2 border-b border-border pb-4 mb-6">
               <button
@@ -85,8 +142,9 @@ export const ContactPage: React.FC = () => {
                   For product selection, design services, evaluation samples, or distributor partnership enquiries, contact SkyMirr directly.
                 </p>
 
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  <a
+                <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="mt-6 grid gap-3 sm:grid-cols-3">
+                  <motion.a
+                    variants={fadeUp}
                     href="mailto:sales@skymirr.com"
                     className="flex flex-col rounded-[12px] bg-paper p-3.5 ring-1 ring-border transition-colors hover:bg-paper-2"
                   >
@@ -96,9 +154,10 @@ export const ContactPage: React.FC = () => {
                     <span className="mt-1 text-xs font-bold text-brand-deep truncate">
                       sales@skymirr.com
                     </span>
-                  </a>
+                  </motion.a>
 
-                  <a
+                  <motion.a
+                    variants={fadeUp}
                     href="tel:+13213931039"
                     className="flex flex-col rounded-[12px] bg-paper p-3.5 ring-1 ring-border transition-colors hover:bg-paper-2"
                   >
@@ -108,9 +167,10 @@ export const ContactPage: React.FC = () => {
                     <span className="mt-1 text-xs font-bold text-brand-deep">
                       321-393-1039
                     </span>
-                  </a>
+                  </motion.a>
 
-                  <a
+                  <motion.a
+                    variants={fadeUp}
                     href="tel:+13216103477"
                     className="flex flex-col rounded-[12px] bg-paper p-3.5 ring-1 ring-border transition-colors hover:bg-paper-2"
                   >
@@ -120,8 +180,8 @@ export const ContactPage: React.FC = () => {
                     <span className="mt-1 text-xs font-bold text-brand-deep">
                       321-610-3477
                     </span>
-                  </a>
-                </div>
+                  </motion.a>
+                </motion.div>
 
                 {/* Form */}
                 <div className="mt-8 border-t border-border pt-6">
@@ -301,43 +361,8 @@ export const ContactPage: React.FC = () => {
                 )}
               </div>
             )}
-          </div>
+          </motion.div>
 
-          {/* Right Office & Corporate Card */}
-          <div className="flex flex-col justify-between rounded-md bg-brand-deep p-7 text-white sm:p-9 shadow-sm hover-gradient-border">
-            <div className="relative z-10">
-              <MapPin className="size-6 text-brand-bright" aria-hidden="true" />
-              <p className="mt-6 font-mono text-[10px] uppercase text-signal">
-                United States Headquarters
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold">SkyMirr, Inc.</h2>
-              <address className="mt-4 not-italic text-sm leading-7 text-brand-foreground/75">
-                930 S. Harbor City Blvd
-                <br />
-                Suite 403
-                <br />
-                Melbourne, FL 32901
-                <br />
-                United States
-              </address>
-
-              <div className="mt-8 border-t border-white/15 pt-6 text-xs text-white/80 space-y-2">
-                <div className="font-bold text-brand-bright uppercase tracking-wider text-[10px]">
-                  International Operations
-                </div>
-                <div>
-                  <span className="font-semibold text-white">R&amp;D Hub:</span> Songdo Techno Park, Incheon, South Korea
-                </div>
-                <div>
-                  <span className="font-semibold text-white">Manufacturing:</span> Binh Duong Precision Industrial Zone, Vietnam
-                </div>
-              </div>
-            </div>
-
-            <p className="relative z-10 mt-12 text-sm text-white/70">
-              When it has to connect, it has to be SkyMirr.
-            </p>
-          </div>
         </div>
       </section>
     </main>

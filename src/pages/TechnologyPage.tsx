@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronRight, Zap, Shield, Activity, Layers, Radio, CheckCircle2 } from 'lucide-react';
 import type { RoutePath } from '../types';
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 70, damping: 20 } }
+};
+
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
 
 interface TechnologyPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -12,19 +33,19 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
   return (
     <main>
       {/* Hero */}
-      <section className="border-b border-border bg-sky-100">
-        <div className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
-          <span className="inline-flex items-center gap-2 rounded-sm bg-surface px-3 py-1.5 font-mono text-[10px] uppercase text-brand shadow-sm ring-1 ring-border">
+      <section className="border-b border-border bg-sky-100 overflow-hidden">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className="mx-auto max-w-[1400px] px-5 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-10 lg:pt-36 lg:pb-24">
+          <motion.span variants={fadeUp} className="inline-flex items-center gap-2 rounded-sm bg-surface px-3 py-1.5 font-mono text-[10px] uppercase text-brand shadow-sm ring-1 ring-border">
             <span className="size-1.5 bg-signal" />
             Proprietary RF Physics
-          </span>
-          <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
+          </motion.span>
+          <motion.h1 variants={fadeUp} className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.04] text-brand-deep sm:text-5xl lg:text-6xl">
             MuLCAT®: Multi-Layer Coupling Controlled Antenna Technology.
-          </h1>
-          <p className="mt-6 max-w-3xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          </motion.h1>
+          <motion.p variants={fadeUp} className="mt-6 max-w-3xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             Developed after decades of antenna and electromagnetics innovation, MuLCAT® solves the fundamental physical barrier of mutual coupling in multi-band 5G and IoT hardware.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       {/* Interactive Technology Tabs */}
@@ -64,8 +85,8 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
 
         {/* Tab 1: MuLCAT */}
         {activeTab === 'mulcat' && (
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center animate-in fade-in duration-200">
-            <div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center overflow-hidden">
+            <motion.div variants={slideFromLeft} initial="hidden" animate="show">
               <p className="font-mono text-[10px] uppercase text-accent font-bold tracking-widest">The Electromagnetics Barrier</p>
               <h2 className="mt-3 text-3xl font-semibold text-brand-deep">
                 Why Traditional Multi-Antenna Arrays Fail
@@ -93,10 +114,10 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 MuLCAT® employs a proprietary multi-layer electromagnetic decoupled substrate. It cancels destructive near-field cross-coupling without requiring bulky physical isolation barriers.
               </p>
-            </div>
+            </motion.div>
 
             {/* Performance Benchmark Box */}
-            <div className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border shadow-sm hover-gradient-border">
+            <motion.div variants={slideFromRight} initial="hidden" animate="show" className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border shadow-sm hover-gradient-border">
               <div className="flex items-center justify-between pb-4 border-b border-border">
                 <span className="font-mono text-[11px] uppercase text-brand font-semibold">
                   Lab Measured Benchmark
@@ -148,14 +169,14 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
                 </div>
                 Devices powered by MuLCAT® stay reliably connected in remote warehouses, moving trains, and basements where competitor devices lose carrier handshake.
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
 
         {/* Tab 2: Carrier Certifications */}
         {activeTab === 'carrier' && (
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center animate-in fade-in duration-200">
-            <div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center overflow-hidden">
+            <motion.div variants={slideFromLeft} initial="hidden" animate="show">
               <p className="font-mono text-[10px] uppercase text-accent font-bold tracking-widest">Tier-1 Cellular Compliance</p>
               <h2 className="mt-3 text-3xl font-semibold text-brand-deep">
                 Official AT&amp;T Network Certification
@@ -176,9 +197,9 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
                   <div className="text-[11px] text-muted-foreground mt-0.5">Complies with North American and European regulatory bodies</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border hover-gradient-border shadow-sm">
+            <motion.div variants={slideFromRight} initial="hidden" animate="show" className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border hover-gradient-border shadow-sm">
               <h3 className="text-lg font-semibold text-brand-deep">Major Carrier Compatibility</h3>
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <div className="rounded-sm bg-paper p-4 text-center ring-1 ring-border transition-colors hover:bg-brand/5">
@@ -194,14 +215,14 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
                   <div className="text-[10px] font-mono text-muted-foreground mt-1">COMPATIBLE</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         )}
 
         {/* Tab 3: Mesh & Failover */}
         {activeTab === 'mesh' && (
-          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center animate-in fade-in duration-200">
-            <div>
+          <div className="mt-10 grid gap-10 lg:grid-cols-2 items-center overflow-hidden">
+            <motion.div variants={slideFromLeft} initial="hidden" animate="show">
               <p className="font-mono text-[10px] uppercase text-accent font-bold tracking-widest">Mission-Critical Resilience</p>
               <h2 className="mt-3 text-3xl font-semibold text-brand-deep">
                 Zero-Downtime Dual-SIM Failover &amp; Mesh
@@ -226,9 +247,9 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border text-center hover-gradient-border shadow-sm">
+            <motion.div variants={slideFromRight} initial="hidden" animate="show" className="rounded-md bg-surface p-6 sm:p-8 ring-1 ring-border text-center hover-gradient-border shadow-sm">
               <img
                 src="/images/skymirr-router.jpg"
                 alt="Sky5G Router with Failover"
@@ -236,15 +257,15 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
               />
               <p className="font-mono text-[10px] uppercase text-brand font-semibold">TCPA-117 CPE Gateway</p>
               <h3 className="text-lg font-semibold text-brand-deep mt-1">Autonomous Failover Router</h3>
-            </div>
+            </motion.div>
           </div>
         )}
       </section>
 
       {/* Customer Success Scenario from skymirr.com */}
-      <section className="border-t border-border bg-sky-100">
+      <section className="border-t border-border bg-sky-100 overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-6 lg:px-10 lg:py-20">
-          <div className="rounded-md bg-surface p-6 sm:p-10 ring-1 ring-border shadow-sm hover-gradient-border">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="rounded-md bg-surface p-6 sm:p-10 ring-1 ring-border shadow-sm hover-gradient-border">
             <div className="flex items-center gap-2 mb-3">
               <Activity className="size-4 text-brand" />
               <span className="font-mono text-[10px] uppercase text-brand font-semibold">
@@ -296,7 +317,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({ onNavigate }) =>
                 Explore Sky5G Routers
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>

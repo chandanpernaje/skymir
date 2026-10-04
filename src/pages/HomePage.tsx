@@ -71,15 +71,22 @@ const solutions = [
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12 }
-  }
+  show: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 90, damping: 20 } }
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 70, damping: 20 } }
+};
+
+const slideFromLeft = {
+  hidden: { opacity: 0, x: -100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
+};
+
+const slideFromRight = {
+  hidden: { opacity: 0, x: 100 },
+  show: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 60, damping: 20 } }
 };
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
@@ -110,6 +117,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
+
+
       {/* 
         ========================================
         HERO TEXT SECTION (BOTTOM)
@@ -119,39 +128,63 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         {/* Abstract Top Grid */}
         <div className="absolute inset-0 z-0 bg-[url('/images/grid.svg')] bg-center opacity-[0.03]" />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12 flex flex-col items-center text-center">
-          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="max-w-4xl mx-auto flex flex-col items-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12 flex flex-col items-start text-left md:items-center md:text-center">
+          <motion.div variants={staggerContainer} initial="hidden" animate="show" className="max-w-4xl flex flex-col items-start md:items-center">
             
             <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-2 px-4 py-2 bg-brand/10 text-brand font-mono text-[11px] font-bold uppercase tracking-widest rounded-full border border-brand/20">
               <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
               Enterprise Wireless Systems
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-balance text-6xl font-extrabold leading-[1.05] tracking-tight text-brand-deep sm:text-7xl lg:text-[5.5rem]">
-              Signal <br className="hidden sm:block"/>
+            <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-deep tracking-tight leading-[1.1]">
+              Signal <br className="hidden md:block"/>
               <span className="text-brand">without limits.</span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-8 text-pretty text-lg md:text-xl leading-relaxed text-muted-foreground font-medium max-w-2xl">
-              SkyMirr engineers premium enterprise wireless solutions. Experience unparalleled reliability with our proprietary <strong className="font-extrabold text-brand-deep">MuLCAT®</strong> technology, designed for the world's most challenging environments.
+            <motion.p variants={fadeUp} className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl px-2 sm:px-0">
+              We develop and manufacture advanced RF technology-based products that better connect the world, such as cost-effective better-performing broadband wireless for everyone.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row items-start justify-start md:items-center md:justify-center gap-4 w-full sm:w-auto">
               <a
-                className="group relative inline-flex items-center justify-center gap-3 bg-brand px-8 py-4 font-bold text-white transition-all hover:bg-brand-bright hover:shadow-lg rounded-sm"
-                href="/products"
-                onClick={(e) => handleNav(e, '/products')}
-              >
-                Explore Hardware
-                <ChevronRight className="size-5 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                className="group inline-flex items-center justify-center gap-2 bg-transparent px-8 py-4 font-bold text-brand-deep ring-2 ring-brand/30 transition-all hover:ring-brand hover:bg-brand/5 rounded-sm"
+                className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-brand px-8 py-4 font-bold text-white transition-all hover:bg-brand-bright hover:shadow-lg rounded-sm uppercase"
                 href="/technology"
                 onClick={(e) => handleNav(e, '/technology')}
               >
-                <Sparkles className="size-4 text-brand transition-transform group-hover:rotate-12" />
-                Discover MuLCAT®
+                How do we do that?
+                <ChevronRight className="size-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================
+        SECONDARY MISSION SECTION
+        ========================================
+      */}
+      <section className="relative py-24 overflow-hidden bg-paper-2 border-b border-border z-10">
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12 flex flex-col items-start text-left md:items-center md:text-center">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }} className="max-w-4xl flex flex-col items-start md:items-center">
+            
+            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-deep tracking-tight leading-[1.1]">
+              When it has to connect, <br className="hidden md:block"/>
+              <span className="text-brand">it has to be SkyMirr.</span>
+            </motion.h2>
+
+            <motion.p variants={fadeUp} className="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl px-2 sm:px-0">
+              We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row items-start justify-start md:items-center md:justify-center gap-4 w-full sm:w-auto">
+              <a
+                className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-brand px-8 py-4 font-bold text-white transition-all hover:bg-brand-bright hover:shadow-lg rounded-sm uppercase"
+                href="/products"
+                onClick={(e) => handleNav(e, '/products')}
+              >
+                PRODUCTS
+                <ChevronRight className="size-5 transition-transform group-hover:translate-x-1" />
               </a>
             </motion.div>
           </motion.div>
@@ -190,7 +223,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         HARDWARE SHOWCASE 
         ========================================
       */}
-      <section className="relative py-24 lg:py-32 bg-paper-2 border-t border-border">
+      <section className="relative pt-24 lg:pt-32 pb-8 lg:pb-12 bg-paper-2 border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <motion.div 
             initial="hidden" whileInView="show" viewport={{ once: true, margin: "-100px" }}
@@ -206,7 +239,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <motion.div variants={fadeUp} className="accent-line mb-6" />
               <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-deep tracking-tight leading-[1.1]">
                 Purpose-built <br className="hidden md:block"/>
-                <span className="text-muted-foreground/60">wireless platforms.</span>
+                <span className="text-brand">wireless platforms.</span>
               </motion.h2>
             </div>
             <motion.a
@@ -280,44 +313,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 
-        ========================================
-        NEW ANIMATED METRICS SECTION
-        ========================================
-      */}
-      <section className="relative py-20 bg-brand-deep text-white border-y border-white/10">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-10 bg-brand" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[80px] opacity-10 bg-brand-bright" />
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('/images/grid.svg')] bg-center" />
-        </div>
-        
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:divide-x lg:divide-white/10">
-            {[
-              { label: 'Network Reliability', value: '99.99', suffix: '%' },
-              { label: 'Global Deployments', value: '50', suffix: '+' },
-              { label: 'Operating Range', value: '-40', suffix: ' to +85°C' },
-              { label: 'Continuous Uptime', value: '100', suffix: '%' }
-            ].map((metric, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: idx * 0.1, type: 'spring' }}
-                className={`flex flex-col items-start text-left ${idx % 2 !== 0 ? '' : ''} ${idx !== 0 ? 'lg:pl-8' : ''}`}
-              >
-                <div className="flex items-baseline gap-1 text-brand-bright mb-2">
-                  <span className="text-6xl lg:text-7xl font-extrabold tracking-tighter">{metric.value}</span>
-                  <span className="text-3xl lg:text-4xl font-bold">{metric.suffix}</span>
-                </div>
-                <p className="text-xs lg:text-sm font-semibold text-white/60 uppercase tracking-widest">{metric.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* 
         ========================================
@@ -338,7 +334,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         INTERACTIVE SOLUTIONS - Per-card accent colors
         ========================================
       */}
-      <section className="relative py-24 lg:py-32" style={{background: 'linear-gradient(180deg, #ffffff 0%, #F0F4FF 100%)'}}>
+      <section className="relative pt-24 lg:pt-32 pb-8 lg:pb-12" style={{background: 'linear-gradient(180deg, #ffffff 0%, #F0F4FF 100%)'}}>
         <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <div className="text-left mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand/10 border border-brand/20 mb-6">
@@ -424,10 +420,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 
         ========================================
-
-
-      {/* 
-        ========================================
         NEW CTA: TAKE A CLOSER LOOK
         ========================================
       */}
@@ -441,11 +433,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           >
             
             {/* Left Content */}
-            <div className="md:w-1/2 text-center md:text-left space-y-6 order-2 md:order-1">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-deep tracking-tight uppercase">
+            <motion.div variants={slideFromLeft} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="md:w-1/2 text-left flex flex-col items-start space-y-6 order-2 md:order-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-deep tracking-tight leading-[1.1]">
                 Take a closer look....
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground font-medium max-w-md mx-auto md:mx-0">
+              <p className="text-base sm:text-lg text-muted-foreground font-medium max-w-md">
                 Explore our full portfolio of enterprise wireless hardware and custom high-performance antenna solutions.
               </p>
               <div className="pt-4">
@@ -458,16 +450,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <ArrowRight className="size-4" />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Image (Antennas) */}
-            <div className="md:w-1/2 w-full flex justify-center order-1 md:order-2 mb-8 md:mb-0">
+            <motion.div variants={slideFromRight} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="md:w-1/2 w-full flex justify-center order-1 md:order-2 mb-8 md:mb-0">
               <img 
                 src="/images/our-products.png" 
                 alt="Available Products" 
                 className="w-full h-[200px] sm:h-[300px] object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500" 
               />
-            </div>
+            </motion.div>
 
           </motion.div>
         </div>
@@ -489,7 +481,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           
           {/* Left: Elevate Connectivity */}
           <div className="lg:w-1/2">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="max-w-xl text-left">
+            <motion.div variants={slideFromLeft} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className="max-w-xl text-left">
               <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-white/20 bg-white/5 rounded-sm">
                 <span className="w-2 h-2 rounded-full bg-signal block animate-pulse" />
                 <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white/90">Ready to Connect</span>
@@ -523,10 +515,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Right: Global Scale Card */}
           <div className="lg:w-1/2 flex flex-col justify-center">
             <motion.div 
-              initial={{ opacity: 0, x: 40 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              variants={slideFromRight}
+              initial="hidden" 
+              whileInView="show" 
+              viewport={{ once: true, margin: "-50px" }}
               className="relative p-8 sm:p-12 rounded-sm border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl"
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-brand-bright/20 text-brand-bright font-mono text-[10px] font-bold uppercase tracking-widest mb-6">

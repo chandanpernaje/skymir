@@ -76,8 +76,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
     const handleOutsideClick = (e: MouseEvent) => {
       if (mobileRef.current && !mobileRef.current.contains(e.target as Node)) setMobileMenuOpen(false);
     };
-    if (mobileMenuOpen) document.addEventListener('click', handleOutsideClick);
-    return () => document.removeEventListener('click', handleOutsideClick);
+    if (mobileMenuOpen) document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [mobileMenuOpen]);
 
   // Close desktop search on outside click
@@ -214,7 +214,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <a
               className="btn-shimmer group inline-flex items-center gap-2 bg-brand px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-deep hover:-translate-y-0.5 hover:shadow-md rounded-sm uppercase tracking-wide"
               href="/contact"
@@ -230,7 +230,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             id="mobile-search-toggle"
             aria-label={mobileSearchOpen ? 'Close search' : 'Search products'}
             onClick={() => { setMobileSearchOpen(!mobileSearchOpen); setMobileMenuOpen(false); }}
-            className="lg:hidden grid size-10 cursor-pointer place-items-center rounded-sm bg-white border border-gray-200 text-slate-500 hover:text-brand hover:border-brand transition-all"
+            className="lg:hidden p-2 text-slate-500 hover:text-brand"
           >
             {mobileSearchOpen ? <X className="size-5" /> : <Search className="size-5" />}
           </button>
@@ -240,10 +240,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             <button
               type="button"
               onClick={() => { setMobileMenuOpen(!mobileMenuOpen); setMobileSearchOpen(false); }}
-              className="grid size-10 cursor-pointer place-items-center rounded-sm bg-paper text-brand-deep transition-colors hover:bg-border"
+              className="p-2 text-slate-500 hover:text-brand transition-colors"
               aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
             >
-              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+              {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
             </button>
 
             {mobileMenuOpen && (
@@ -256,7 +256,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   return (
                     <a
                       key={item.href}
-                      className={`block rounded-sm px-4 py-3 text-sm font-semibold transition-colors ${
+                      className={`block text-left uppercase tracking-wide rounded-sm px-4 py-3 text-sm font-semibold transition-colors ${
                         isActive ? 'bg-brand/10 text-brand font-bold' : 'text-slate-700 hover:bg-paper hover:text-brand'
                       }`}
                       href={item.href}
